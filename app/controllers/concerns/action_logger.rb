@@ -13,8 +13,8 @@ module ActionLogger
     rescue ActiveRecord::RecordNotFound,
       ActionController::RoutingError,
       ActionController::UnknownController,
-      Pundit::NotAuthorizedError,
-      Octopus::Exception::UserUnauthorized => ignore_exception
+      CanCan::AccessDenied,
+      Draft::Exception::UserUnauthorized => ignore_exception
       raise ignore_exception
     rescue Exception => e
       action_log_params = @log_params.merge!({
@@ -22,7 +22,7 @@ module ActionLogger
         response: {status: 500}
       })
       LOG_DEBUG("log_action_around save exception")
-      Octopus::ActionLog.create!({
+      ActionLog.create!({
         action_name: @log_params[:action], 
         controller_name: @log_params[:controller],
         params: @log_params
@@ -34,7 +34,7 @@ module ActionLogger
       response: {status: response.status, body: JSON.parse(body)}
     })
     LOG_DEBUG("log_action_around save")
-    Octopus::ActionLog.create!({
+    ActionLog.create!({
       action_name: @log_params[:action], 
       controller_name: @log_params[:controller],
       params: @log_params

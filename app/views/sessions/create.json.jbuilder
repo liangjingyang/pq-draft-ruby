@@ -1,2 +1,2 @@
 json.token @token.token
-json.partial! 'users/show', user: @userx
+json.partial! 'users/show', user: @user

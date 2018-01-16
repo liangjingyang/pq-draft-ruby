@@ -4,6 +4,14 @@ Rails.application.routes.draw do
     scope path: '/v1' do
       resources :users, only: [:index, :show, :update]
       resources :sessions, only: [:create, :destroy]
+      resources :boxes, only: [:update, :index, :show] do
+        resources :posts, only: [:create, :update, :index, :destroy]
+      end
+
+      scope path: '/search' do
+        get :box, to: 'boxes#search'
+        get :post, to: 'posts#search'
+      end
     end
   end
   

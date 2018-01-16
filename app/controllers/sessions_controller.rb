@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     @token = auth_token
-    @userx = entity
+    @user = entity
     Rails.cache.write("#{CACHE_JWT}#{entity.id}", @token.token, expires_in: 12.hours)
     LOG_DEBUG("jwt create: #{@token.token}")
   end
@@ -25,9 +25,9 @@ class SessionsController < ApplicationController
   def entity
     @entity ||=
       if entity_class.respond_to? :from_token_request
-        entity_class.from_token_request params
+        entity_class.from_token_request auth_params
       else
-        entity_class.find_by(uid: auth_params[:uid])
+        entity_class.find_by(uid: auth_params[:uid], provider: auth_params[:provider])
       end
   end
 
@@ -40,6 +40,6 @@ class SessionsController < ApplicationController
   end
 
   def auth_params
-    params.require(:session).permit :uid, :token
+    params.require(:session).permit :uid, :token, :provider
   end
 end

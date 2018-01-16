@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112103507) do
+ActiveRecord::Schema.define(version: 20180115074442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,16 +24,46 @@ ActiveRecord::Schema.define(version: 20180112103507) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "boxes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "image"
+    t.string "name"
+    t.string "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "following_boxes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "box_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "box_id"
+    t.text "content"
+    t.jsonb "images"
+    t.boolean "mini_program"
+    t.integer "parent_id"
+    t.datetime "last_shared_at"
+    t.integer "children_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "uid"
+    t.string "provider"
+    t.string "provider_token"
     t.string "encrypted_password", default: "", null: false
     t.string "encrypted_captcha", default: "", null: false
     t.string "image"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["uid"], name: "index_users_on_uid", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
 end

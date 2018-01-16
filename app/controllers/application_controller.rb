@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
     define_current_entity_getter('User'.constantize, getter_name)
     public_send(getter_name)
   end
+  
   def authenticate_user
     if current_user 
       # if Rails.cache.read("#{CACHE_JWT}#{current_user.id}") != token
@@ -19,11 +20,13 @@ class ApplicationController < ActionController::API
       #   LOG_DEBUG("authenticate_user success, current_user: #{current_user}")
       # end
     else
+      LOG_DEBUG(params)
       LOG_DEBUG("authenticate_user failed, user unauthorized")
       raise Draft::Exception::UserUnauthorized.new 
     end
   end
 
+  rescue_from CanCan::AccessDenied, with: :render_user_unauthorized
   rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
   rescue_from ActionController::RoutingError, with: :render_route_not_found
   rescue_from ActionController::UnknownController, with: :render_controller_not_found

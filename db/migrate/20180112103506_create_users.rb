@@ -3,6 +3,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
     create_table :users do |t|
       t.string :name
       t.string :uid
+      t.string :provider
+      t.string :provider_token
 
       ## Database authenticatable
       t.string :encrypted_password, :null => false, :default => ""
@@ -13,6 +15,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :users, :uid, unique: true
+    add_index :users, [:uid, :provider], unique: true
   end
 end
