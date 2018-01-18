@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.find_or_create_by!(
+  name: '发言人的草稿箱',
   uid: '053286898350', 
   provider: 'wx',
 )
-user.update_attribute(:name, '发言人的草稿箱')
 user.update_attribute(:image, 'http://p2qeugd65.bkt.clouddn.com/1/fd5aabf071657314fef8f19ea22f960a.png')
 box = user.box
 box.update_attribute(:image, "http://p2qeugd65.bkt.clouddn.com/1/7fb12f890f2f4ac0861975a5e48ab115.png")
