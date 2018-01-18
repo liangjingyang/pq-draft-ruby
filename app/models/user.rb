@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
 
   private
-  def create_box
+  def create_box 
     self.boxes.create!(name: "#{self.name}") if self.boxes.blank?
   end
 
