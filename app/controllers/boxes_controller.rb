@@ -1,5 +1,5 @@
 class BoxesController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:show]
 
   def index
     authorize! :index, Box
@@ -8,8 +8,11 @@ class BoxesController < ApplicationController
   end
 
   def show
-    @box = Box.find(params[:id])
-    authorize! :show, @box
+    if params[:number].present?
+      @box = Box.find_by(number: params[:number])
+    else
+      @box = Box.find(params[:id])
+    end
   end
 
   def update

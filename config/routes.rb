@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update]
       resources :sessions, only: [:create, :destroy]
       resources :boxes, only: [:update, :index, :show] do
+        get :mini_program, to: 'posts#mini_program'
         resources :posts, only: [:create, :update, :index, :destroy]
       end
 

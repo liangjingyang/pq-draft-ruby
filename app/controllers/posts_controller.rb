@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user
-  before_action :load_box, only: [:index, :create, :update, :destroy]
+  before_action :authenticate_user, except: [:mini_program]
+  before_action :load_box, except: [:search]
   
   def index
     authorize! :display_posts, @box
     authorize! :index, Post
     @posts = @box.posts
-    page = params[:page] || 1
-    @posts = @posts.page(page)
+    @posts = @posts.page(params[:page] || 1)
   end
   
   def create
@@ -36,14 +35,18 @@ class PostsController < ApplicationController
     if params[:q].present?
       @posts = @posts.where("content LIKE ?", "%#{params[:q]}%")
     end
-    page = params[:page] || 1
-    @posts = @posts.page(page)
+    @posts = @posts.page(params[:page] || 1)
+  end
+
+  def mini_program
+    @posts = Post.where(mini_program: true, box_id: params[:box_id]).order('created_at desc')
+    @posts = @posts.page(params[:page] || 1)
   end
 
   private
 
   def load_box
-    @box = Box.accessible_by(current_ability).find(params[:box_id])
+    @box = Box.find(params[:box_id])
   end
 
   def create_params

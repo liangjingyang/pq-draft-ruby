@@ -6,6 +6,7 @@ RSpec.describe PostsController, type: :controller do
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
   let(:box) { user.box }
   let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
+  let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
   before { Rails.cache.write("#{CACHE_JWT}#{user.id}", token, expires_in: 12.minutes) }
 
   describe "GET #index" do
@@ -44,6 +45,15 @@ RSpec.describe PostsController, type: :controller do
       post :update, params: {box_id: box.id, token: token, id: the_post.id, post: {images: ["ccc"]}}, format: :json
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body)['images'][0]).to eq("ccc")
+    end
+  end
+
+  describe "GET #mini_program" do
+    it "returns http success" do
+      get :mini_program, params: {box_id: box.id, token: token, page: 1}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['posts'][0]['content']).to eq("mini_program")
     end
   end
 
