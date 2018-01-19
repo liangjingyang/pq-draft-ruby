@@ -18,6 +18,28 @@ box.posts.delete_all
 # 添加的时候, 按照created_at倒序
 box.posts.create!(
   content:
+"""给小程序的各个页面增加分享功能
+""",
+  images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/4145e075f9f8b596d48aa06769c964b9.png"
+  ],
+  mini_program: true,
+  created_at: "2018-01-19",
+)
+
+box.posts.create!(
+  content:
+"""小程序增加详情页面
+""",
+  images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
+  ],
+  mini_program: true,
+  created_at: "2018-01-19",
+)
+
+box.posts.create!(
+  content:
 """服务端给post增加copy接口
 """,
   images: [
