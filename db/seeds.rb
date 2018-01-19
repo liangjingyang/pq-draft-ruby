@@ -18,6 +18,28 @@ box.posts.delete_all
 # 添加的时候, 按照created_at倒序
 box.posts.create!(
   content:
+"""服务端给post增加copy接口
+""",
+  images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/b220150a36331c61638406bcf3053810.jpg"
+  ],
+  mini_program: true,
+  created_at: "2018-01-19",
+)
+
+box.posts.create!(
+  content:
+"""小程序和服务端联调, 调通各个api接口
+""",
+  images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/bc21426085b439f24ba484a56638f6ed.jpg"
+  ],
+  mini_program: true,
+  created_at: "2018-01-18",
+)
+
+box.posts.create!(
+  content:
 """测试一下emoji...
 😬😑😐😶😱😆❤️🚘🚖➢✪☞☛€¥¢®©&⅋🀌🀍🀎‰‱
 """,

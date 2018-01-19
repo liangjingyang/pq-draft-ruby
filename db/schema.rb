@@ -44,10 +44,12 @@ ActiveRecord::Schema.define(version: 20180115074442) do
     t.integer "box_id"
     t.text "content"
     t.jsonb "images"
-    t.boolean "mini_program"
+    t.boolean "mini_program", default: false
     t.integer "parent_id"
     t.datetime "last_shared_at"
-    t.integer "children_count"
+    t.datetime "last_copied_at"
+    t.datetime "last_pasted_at"
+    t.integer "copied_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

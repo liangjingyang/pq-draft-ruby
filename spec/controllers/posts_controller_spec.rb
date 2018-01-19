@@ -57,4 +57,13 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "POST #copy" do
+    it "returns http success" do
+      post :copy, params: {box_id: box.id, token: token, id: the_post.id}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['code']).to eq(0)
+    end
+  end
+
 end

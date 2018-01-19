@@ -29,6 +29,13 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
+  def copy
+    authorize! :display_posts, @box
+    @post = @box.posts.find(params[:id])
+    @post.copy_to(current_user.box)
+    render_success
+  end
+
   def search
     box_ids = current_user.all_box_ids
     @posts = Post.where(box_id: box_ids)
