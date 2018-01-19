@@ -24,13 +24,31 @@ RSpec.describe PostsController, type: :controller do
     end 
   end
 
-  # describe "POST #show" do
-  #   it "returns http success" do
-  #     get :show, params: {box_id: box.id, token: token, id: the_post.id}, format: :json
-  #     expect(response).to have_http_status(:success)
-  #     expect(JSON.parse(response.body)['content']).to eq('test')
-  #   end
-  # end
+  describe "POST #show" do
+    before do
+      @user2 = create(:user, uid: '111', provider: 'wx', name: 'abc')
+      @box2 = @user2.box
+      @the_post2 = @box2.posts.create!(content: "test2", images: ["aaa", "bbb"])
+      
+    end
+    it "Should be able to access self own post" do
+      get :show, params: {box_id: box.id, token: token, id: the_post.id}, format: :json
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)['content']).to eq('test')
+    end
+
+    it "Should not be able to access stranger's post" do
+      get :show, params: {box_id: @box2.id, token: token, id: @the_post2.id}, format: :json
+      expect(response).to have_http_status(401)
+    end
+
+    it "Should be able to access the post in following box" do
+      user.following_boxes << @box2
+      get :show, params: {box_id: @box2.id, token: token, id: @the_post2.id}, format: :json
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)['content']).to eq('test2')
+    end
+  end
 
   describe "POST #update" do
     it "returns http success" do

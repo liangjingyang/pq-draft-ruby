@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :boxes, only: [:update, :index, :show] do
         post :copy, to: 'posts#copy'
         get :mini_program, to: 'posts#mini_program'
-        resources :posts, only: [:create, :update, :index, :destroy]
+        resources :posts, only: [:create, :update, :index, :show, :destroy]
       end
 
       scope path: '/search' do

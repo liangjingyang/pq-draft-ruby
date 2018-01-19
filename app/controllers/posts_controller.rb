@@ -8,6 +8,12 @@ class PostsController < ApplicationController
     @posts = @box.posts
     @posts = @posts.page(params[:page] || 1)
   end
+
+  def show
+    authorize! :display_posts, @box
+    authorize! :show, Post
+    @post = @box.posts.find(params[:id])
+  end
   
   def create
     authorize! :update, @box
