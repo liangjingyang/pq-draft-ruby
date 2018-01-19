@@ -10,9 +10,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    authorize! :display_posts, @box
-    authorize! :show, Post
     @post = @box.posts.find(params[:id])
+    if !@post.mini_program
+      authorize! :display_posts, @box
+      authorize! :show, Post
+    end
   end
   
   def create
