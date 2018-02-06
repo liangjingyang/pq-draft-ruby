@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   def index
     authorize! :display_posts, @box
     authorize! :index, Post
-    @posts = @box.posts
+    @posts = @box.posts.order('created_at desc')
     @posts = @posts.page(params[:page] || 1)
   end
 

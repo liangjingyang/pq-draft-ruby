@@ -4,7 +4,8 @@ class BoxesController < ApplicationController
   def index
     authorize! :index, Box
     page = params[:page] || 1
-    @boxes = Box.accessible_by(current_ability).page(page)
+    # @boxes = Box.all.page(page)
+    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page)
   end
 
   def show

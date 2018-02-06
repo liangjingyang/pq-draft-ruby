@@ -70,6 +70,9 @@ gem 'knock'
 gem 'jbuilder'
 gem 'yajl-ruby'
 
+# qiniu
+gem 'qiniu', github: 'qiniu/ruby-sdk'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_bot_rails', '~> 4.0'

@@ -1,4 +1,5 @@
 json.id box.id
+json.user_id box.user_id
 json.name box.name
 json.image box.image
 # json.created_at box.created_at

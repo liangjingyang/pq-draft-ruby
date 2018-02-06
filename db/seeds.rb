@@ -21,6 +21,8 @@ box.posts.create!(
 """给小程序的各个页面增加分享功能
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/4145e075f9f8b596d48aa06769c964b9.png"
   ],
   mini_program: true,
@@ -32,6 +34,10 @@ box.posts.create!(
 """小程序增加详情页面
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
   ],
   mini_program: true,
@@ -43,6 +49,11 @@ box.posts.create!(
 """服务端给post增加copy接口
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/b220150a36331c61638406bcf3053810.jpg"
   ],
   mini_program: true,
@@ -54,6 +65,9 @@ box.posts.create!(
 """小程序和服务端联调, 调通各个api接口
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/bc21426085b439f24ba484a56638f6ed.jpg"
   ],
   mini_program: true,
@@ -77,7 +91,8 @@ box.posts.create!(
 服务端丰富seed数据, 并部署到服务器上
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/255cb8291db8b69db354187d1ba2073e.jpg"
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
   ],
   mini_program: true,
   created_at: "2018-01-18"
@@ -90,6 +105,10 @@ box.posts.create!(
 2.图片详情(也可能不做)
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
     "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
     "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
@@ -119,6 +138,13 @@ box.posts.create!(
 2.jbuilder
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
     "http://p2qeugd65.bkt.clouddn.com/1/c29230951080cae36929ec6a7343b519.png"
   ],
   mini_program: true,
@@ -132,6 +158,12 @@ box.posts.create!(
 2.数据结构
 """,
   images: [
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
     "http://p2qeugd65.bkt.clouddn.com/1/7fb12f890f2f4ac0861975a5e48ab115.png"
   ],
   mini_program: true,

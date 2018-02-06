@@ -1,1 +1,3 @@
-json.partial! 'show', user: @user
+json.data do
+  json.partial! 'show', user: @user
+end

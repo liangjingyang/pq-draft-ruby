@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(version: 20180115074442) do
     t.string "uid"
     t.string "provider"
     t.string "provider_token"
+    t.string "provider_refresh_token"
+    t.string "language"
+    t.string "country"
+    t.string "province"
+    t.string "city"
+    t.string "sex"
     t.string "encrypted_password", default: "", null: false
     t.string "encrypted_captcha", default: "", null: false
     t.string "image"

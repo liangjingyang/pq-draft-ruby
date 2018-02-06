@@ -1,1 +1,3 @@
-json.partial! 'posts/show', post: @post
+json.data do
+  json.partial! 'posts/show', post: @post
+end

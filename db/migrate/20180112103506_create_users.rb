@@ -5,6 +5,13 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :uid
       t.string :provider
       t.string :provider_token
+      t.string :provider_refresh_token
+
+      t.string :language
+      t.string :country
+      t.string :province
+      t.string :city
+      t.string :sex
 
       ## Database authenticatable
       t.string :encrypted_password, :null => false, :default => ""

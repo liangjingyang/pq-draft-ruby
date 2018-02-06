@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   scope path: '/api', defaults: {format: :json} do
     scope path: '/v1' do
-      resources :users, only: [:index, :show, :update]
+      resources :users, only: [:index, :show, :update] do
+        get :upload_res_token
+      end
       resources :sessions, only: [:create, :destroy]
       resources :boxes, only: [:update, :index, :show] do
         post :copy, to: 'posts#copy'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
         get :box, to: 'boxes#search'
         get :post, to: 'posts#search'
       end
+
     end
   end
   

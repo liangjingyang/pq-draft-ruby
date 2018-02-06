@@ -1,1 +1,3 @@
-json.partial! 'show', box: @box
+json.data do
+  json.partial! 'show', box: @box
+end

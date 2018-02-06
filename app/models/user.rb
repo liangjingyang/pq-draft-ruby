@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  extend Draft::WX
+
   acts_as_paranoid
   has_many :action_logs, class_name: 'ActionLog'
   has_many :boxes, class_name: 'Box', inverse_of: :user, dependent: :destroy
@@ -7,12 +9,42 @@ class User < ApplicationRecord
   
   after_create :create_box
 
+  def image
+    s = super
+    unless s =~ /^https?:\/\//
+      s = "#{DRAFT_CONFIG['qiniu_cname']}/#{s.gsub(/^https?:\/\/.*?\//, '')}"
+    end
+    return s
+  end
+
   def self.from_token_request(permited_params)
-    User.find_or_create_by!(
-      uid: permited_params[:uid], 
+    return if permited_params[:token].blank?
+    access_token_res = get_access_token(permited_params[:token])
+    user_info_res = get_user_info(access_token_res['access_token'], access_token_res['openid'])
+    uid = user_info_res['unionid']
+    name = user_info_res['nickname']
+    user = User.find_by!(
+      uid: uid, 
       provider: permited_params[:provider]
     )
+    unless user.present?
+      user = User.create!(uid: uid, provider: permited_params[:provider], name: name)
+    end
+    user.uid = uid
+    user.image = user_info_res['headimgurl']
+    user.name = user_info_res['nickname']
+    user.language = user_info_res['language']
+    user.country = user_info_res['country']
+    user.province = user_info_res['province']
+    user.city = user_info_res['city']
+    user.sex = user_info_res['sex']
+    user.provider_token = access_token_res['access_token']
+    user.provider_refresh_token = access_token_res['refresh_token']
+    user.save!
+    return user
   end
+
+
 
   # for jwt, gem knock
   def authenticate(password)

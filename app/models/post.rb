@@ -1,6 +1,22 @@
 class Post < ApplicationRecord
   belongs_to :box, class_name: 'Box', inverse_of: :posts
+  
+  def images
+    s = super
+    ss = s.map do |i|
+      if !i =~ /^https?:\/\//
+        "#{DRAFT_CONFIG['qiniu_cname']}/#{i.gsub(/^https?:\/\/.*?\//, '')}"
+      else
+        i
+      end
+    end
+    return ss
+  end
 
+  def is_mine(user)
+    self.box_id == user.box.id
+  end
+    
   # self post is copied post, aim post is pasted post
   def copy_to(box)
     # not copy in same box
