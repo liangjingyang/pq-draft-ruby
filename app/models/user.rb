@@ -61,11 +61,11 @@ class User < ApplicationRecord
   end
 
   def box
-    boxes.last
+    self.boxes.last
   end
 
   def all_box_ids
-    following_boxes.all.pluck(:id) + boxes.all.pluck(:id)
+    self.following_boxes.all.pluck(:id) + boxes.all.pluck(:id)
   end
 
   private

@@ -16,6 +16,8 @@ class UsersController < ApplicationController
         300    # token 过期时间，默认为 3600 秒，即 1 小时
     )
     put_policy.is_prefixal_scope = 1
+    put_policy.mime_limit = "image/jpeg;image/png"
+    put_policy.save_key = "$(etag)`$(ext)"
     @uptoken = Qiniu::Auth.generate_uptoken(put_policy)
   end
 
