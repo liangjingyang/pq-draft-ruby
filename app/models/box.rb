@@ -4,6 +4,8 @@ class Box < ApplicationRecord
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
   has_many :followed_users, through: :following, class_name: 'User', source: :user
 
+  after_create :generate_qrcode_token
+
   def image
     s = super
     if s.present? && !(s =~ /^https?:\/\//)
@@ -23,12 +25,11 @@ class Box < ApplicationRecord
   end
 
   def generate_qrcode_token
-    jwt = ::Knock::AuthToken.new(payload: {sub: self.id})
-    jwt.token
+    _, token = Draft::TOKEN_GENERATOR.generate(Box, :qrcode_token)
+    self.update_column(:qrcode_token, token)
   end
 
   def qrcode_token_valid?(qrcode_token)
-    jwt = ::Knock::AuthToken.new(token: token)
-    Time.now.to_i <= jwt.payload[:exp]
+    self.qrcode_token == qrcode_token
   end
 end

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180115074442) do
     t.string "image"
     t.string "name"
     t.string "number"
+    t.string "qrcode_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

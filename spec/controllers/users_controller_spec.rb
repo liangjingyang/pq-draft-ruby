@@ -24,7 +24,7 @@ RSpec.describe UsersController, type: :controller do
     it "returns http success" do
       expect(other.all_box_ids).not_to include(user.box.id)
       @request.headers['Content-Type'] = 'application/json'
-      uri = "https://#{DRAFT_CONFIG['server_host']}/uri/follow_box?box_id=#{user.box.id}"
+      uri = "https://#{DRAFT_CONFIG['server_host']}/uri/follow_box?qrcode_token=#{user.box.qrcode_token}"
       get :uri_parser, params: {token: other_token, user_id: other.id, uri: uri}, format: :json
       expect(response).to have_http_status(:success)
       LOG_DEBUG(response.body)

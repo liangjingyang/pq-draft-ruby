@@ -35,7 +35,8 @@ class BoxesController < ApplicationController
   def generate_qrcode_token
     @box = Box.find(params[:box_id])
     authorize! :update, @box
-    @qrcode_token = @box.generate_qrcode_token
+    @box.generate_qrcode_token
+    render :show
   end
 
   private

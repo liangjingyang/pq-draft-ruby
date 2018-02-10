@@ -17,9 +17,10 @@ class UriParser
     begin
       @uri_type = "follow_box"
       query_params = parse_params
-      box_id = query_params['box_id']
-      if box_id.present?
-        BoxFollower.find_or_create_by(user_id: @user.id, box_id: box_id)
+      qrcode_token = query_params['qrcode_token']
+      box = Box.find_by(qrcode_token: qrcode_token)
+      if box.present?
+        BoxFollower.find_or_create_by(user_id: @user.id, box_id: box.id)
         @code = 0
         @message = '订阅成功'
       else

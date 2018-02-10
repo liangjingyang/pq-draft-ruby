@@ -5,6 +5,7 @@ class CreateBoxes < ActiveRecord::Migration[5.1]
       t.string :image
       t.string :name
       t.string :number
+      t.string :qrcode_token
 
       t.timestamps
     end
