@@ -24,18 +24,19 @@ ActiveRecord::Schema.define(version: 20180115074442) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "box_followers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "box_id"
+    t.boolean "allowed", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "boxes", force: :cascade do |t|
     t.integer "user_id"
     t.string "image"
     t.string "name"
     t.string "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "following_boxes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "box_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

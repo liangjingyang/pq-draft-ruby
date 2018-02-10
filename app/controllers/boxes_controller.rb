@@ -5,7 +5,7 @@ class BoxesController < ApplicationController
     authorize! :index, Box
     page = params[:page] || 1
     # @boxes = Box.all.page(page)
-    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page)
+    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page).per(50)
   end
 
   def show
@@ -30,6 +30,12 @@ class BoxesController < ApplicationController
     end
     page = params[:page] || 1
     @boxes = @boxes.page(page)
+  end
+
+  def generate_qrcode_token
+    @box = Box.find(params[:box_id])
+    authorize! :update, @box
+    @qrcode_token = @box.generate_qrcode_token
   end
 
   private

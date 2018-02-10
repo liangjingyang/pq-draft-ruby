@@ -4,12 +4,16 @@ Rails.application.routes.draw do
     scope path: '/v1' do
       resources :users, only: [:index, :show, :update] do
         get :upload_res_token
+        get :uri_parser
       end
       resources :sessions, only: [:create, :destroy]
       resources :boxes, only: [:update, :index, :show] do
-        post :copy, to: 'posts#copy'
+        # post :copy, to: 'posts#copy'
+        get :generate_qrcode_token
         resources :posts, only: [:create, :update, :index, :show, :destroy]
       end
+
+      resources :box_followers, only: [:create, :update, :destroy, :index]
       
       scope path: '/mini_program' do
         get :index, to: 'mini_program#index'

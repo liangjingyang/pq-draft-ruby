@@ -51,6 +51,11 @@ class Ability
         can :modify, Box, user_id: user.id
         can :display, Post
         can :modify, Post, box_id: user.box.id
+        can :index, BoxFollower
+        can :update, BoxFollower do |fb|
+          fb.box_id == user.box.id
+        end
+        can :destroy, BoxFollower, user_id: user.id
       end
     # end
   end

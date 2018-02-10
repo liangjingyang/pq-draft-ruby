@@ -13,7 +13,7 @@ RSpec.describe MiniProgramController, type: :controller do
     it "Should be able to access self own post" do
       get :show, params: {box_id: box.id, post_id: mini_post.id}, format: :json
       expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body)['content']).to eq('mini_program')
+      expect(JSON.parse(response.body)['data']['content']).to eq('mini_program')
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe MiniProgramController, type: :controller do
       get :index, params: {box_id: box.id, page: 1}, format: :json
       expect(response).to have_http_status(:success)
       LOG_DEBUG(response.body)
-      expect(JSON.parse(response.body)['posts'][0]['content']).to eq("mini_program")
+      expect(JSON.parse(response.body)['data']['posts'][0]['content']).to eq("mini_program")
     end
   end
 end

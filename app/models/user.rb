@@ -4,14 +4,14 @@ class User < ApplicationRecord
   acts_as_paranoid
   has_many :action_logs, class_name: 'ActionLog'
   has_many :boxes, class_name: 'Box', inverse_of: :user, dependent: :destroy
-  has_many :following, class_name: 'FollowingBox', dependent: :destroy
-  has_many :following_boxes, through: :following, class_name: 'Box', source: :box
+  has_many :box_followers, class_name: 'BoxFollower', dependent: :destroy
+  has_many :following_boxes, through: :box_followers, class_name: 'Box', source: :box
   
   after_create :create_box
-
+  
   def image
     s = super
-    unless s =~ /^https?:\/\//
+    if s.present? && !(s =~ /^https?:\/\//)
       s = "#{DRAFT_CONFIG['qiniu_cname']}/#{s.gsub(/^https?:\/\/.*?\//, '')}"
     end
     return s
@@ -23,7 +23,7 @@ class User < ApplicationRecord
     user_info_res = get_user_info(access_token_res['access_token'], access_token_res['openid'])
     uid = user_info_res['unionid']
     name = user_info_res['nickname']
-    user = User.find_by!(
+    user = User.find_by(
       uid: uid, 
       provider: permited_params[:provider]
     )

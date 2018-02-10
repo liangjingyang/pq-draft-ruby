@@ -35,12 +35,12 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
-  def copy
-    authorize! :display_posts, @box
-    @post = @box.posts.find(params[:id])
-    @post.copy_to(current_user.box)
-    render_success
-  end
+  # def copy
+  #   authorize! :display_posts, @box
+  #   @post = @box.posts.find(params[:id])
+  #   @post.copy_to(current_user.box)
+  #   render_success
+  # end
 
   def search
     box_ids = current_user.all_box_ids
@@ -51,10 +51,10 @@ class PostsController < ApplicationController
     @posts = @posts.page(params[:page] || 1)
   end
 
-  def mini_program
-    @posts = Post.where(mini_program: true, box_id: params[:box_id]).order('created_at desc')
-    @posts = @posts.page(params[:page] || 1)
-  end
+  # def mini_program
+  #   @posts = Post.where(mini_program: true, box_id: params[:box_id]).order('created_at desc')
+  #   @posts = @posts.page(params[:page] || 1)
+  # end
 
   private
 
