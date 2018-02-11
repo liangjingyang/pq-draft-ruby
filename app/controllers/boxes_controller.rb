@@ -39,6 +39,14 @@ class BoxesController < ApplicationController
     render :show
   end
 
+  def following_boxes
+    authorize! :index, Box
+    page = params[:page] || 1
+    # @boxes = Box.all.page(page)
+    @boxes = current_user.following_boxes.page(page).per(50)
+    render :index
+  end
+
   private
   def update_params
     params.require(:box).permit(

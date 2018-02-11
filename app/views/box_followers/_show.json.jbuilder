@@ -5,3 +5,5 @@ json.allowed box_follower.allowed
 json.created_at box_follower.created_at
 json.user_name box_follower.user.name
 json.user_image box_follower.user.image
+json.box_image box_follower.box.image
+json.box_name box_follower.box.name

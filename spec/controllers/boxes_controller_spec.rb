@@ -39,16 +39,24 @@ RSpec.describe BoxesController, type: :controller do
   end
 
   describe "GET #generate_qrcode_token" do
-  it "returns http success" do
-    old_token = box.qrcode_token
-    @request.headers['Content-Type'] = 'application/json'
-    post :generate_qrcode_token, params: {token: token, box_id: box.id}, format: :json
-    expect(response).to have_http_status(:success)
-    box.reload
-    LOG_DEBUG(response.body)
-    expect(JSON.parse(response.body)['data']['qrcode_token']).to eq(box.qrcode_token)
-    expect(box.qrcode_token).not_to eq(old_token)
+    it "returns http success" do
+      old_token = box.qrcode_token
+      @request.headers['Content-Type'] = 'application/json'
+      post :generate_qrcode_token, params: {token: token, box_id: box.id}, format: :json
+      expect(response).to have_http_status(:success)
+      box.reload
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data']['qrcode_token']).to eq(box.qrcode_token)
+      expect(box.qrcode_token).not_to eq(old_token)
+    end
   end
-end
+
+  describe "GET #following_boxes" do
+    it "returns http success" do
+      get :following_boxes, params: {token: token, page: 1}, format: :json
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)['data']).to be_empty
+    end
+  end
 
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         post :generate_qrcode_token
         resources :posts, only: [:create, :update, :index, :show, :destroy]
       end
+      get :following_boxes, to: 'boxes#following_boxes'
 
       resources :box_followers, only: [:create, :update, :destroy, :index]
       
