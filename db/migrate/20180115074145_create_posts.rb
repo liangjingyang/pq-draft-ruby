@@ -6,6 +6,8 @@ class CreatePosts < ActiveRecord::Migration[5.1]
       t.jsonb :images
       t.boolean :mini_program, default: false
       t.integer :parent_id
+      t.integer :parent_box_id
+      t.string :parent_box_name
       t.datetime :last_shared_at
       t.datetime :last_copied_at
       t.datetime :last_pasted_at

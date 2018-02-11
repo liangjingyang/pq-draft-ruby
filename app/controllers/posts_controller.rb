@@ -35,12 +35,13 @@ class PostsController < ApplicationController
     @post.destroy
   end
 
-  # def copy
-  #   authorize! :display_posts, @box
-  #   @post = @box.posts.find(params[:id])
-  #   @post.copy_to(current_user.box)
-  #   render_success
-  # end
+  def copy
+    authorize! :display_posts, @box
+    @copy = @box.posts.find(params[:post_id])
+    @post = @copy.copy_to(current_user.box)
+    LOG_DEBUG(@post)
+    render :show
+  end
 
   def search
     box_ids = current_user.all_box_ids
@@ -65,7 +66,6 @@ class PostsController < ApplicationController
   def create_params
     params.require(:post).permit(
       :content,
-      :parent_id,
       :mini_program,
       :images => []
     )

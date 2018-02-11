@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
 
   let(:user) { User.create!(name: '223', uid: '123') }
+  let(:user2) { User.create!(name: '223', uid: '123') }
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
+  let(:token2) { (Knock::AuthToken.new payload: user2.to_token_payload).token }
   let(:box) { user.box }
   let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
   let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
@@ -76,13 +78,26 @@ RSpec.describe PostsController, type: :controller do
   #   end
   # end
 
-  # describe "POST #copy" do
-  #   it "returns http success" do
-  #     post :copy, params: {box_id: box.id, token: token, id: the_post.id}, format: :json
-  #     expect(response).to have_http_status(:success)
-  #     LOG_DEBUG(response.body)
-  #     expect(JSON.parse(response.body)['code']).to eq(0)
-  #   end
-  # end
+  describe "POST #copy" do
+    it "copy success" do
+      BoxFollower.create(box_id: box.id, user_id: user2.id)
+      post :copy, params: {box_id: box.id, token: token2, post_id: the_post.id}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data']['parent_box_name']).to eq('223')
+    end
+
+    it "copy failed" do
+      post :copy, params: {box_id: box.id, token: token2, post_id: the_post.id}, format: :json
+      expect(response).to have_http_status(401)
+    end
+
+    it "return the origin post" do
+      post :copy, params: {box_id: box.id, token: token, post_id: the_post.id}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data']['id']).to eq(the_post.id)
+    end
+  end
 
 end

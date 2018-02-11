@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   # self post is copied post, aim post is pasted post
   def copy_to(box)
     # not copy in same box
-    return if box.id == self.box_id
+    return self if box.id == self.box_id
     # only update pasted_at, if already copied
     paste = box.posts.find_by(parent_id: self.id)
     now = Time.zone.now
@@ -32,6 +32,8 @@ class Post < ApplicationRecord
         content: self.content, 
         last_pasted_at: now,
         parent_id: self.id,
+        parent_box_id: self.box.id,
+        parent_box_name: self.box.name
       )
       self.update_attributes(
         last_copied_at: now,

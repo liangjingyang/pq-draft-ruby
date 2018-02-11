@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
       resources :sessions, only: [:create, :destroy]
       resources :boxes, only: [:update, :index, :show] do
-        # post :copy, to: 'posts#copy'
         post :generate_qrcode_token
-        resources :posts, only: [:create, :update, :index, :show, :destroy]
+        resources :posts, only: [:create, :update, :index, :show, :destroy] do
+          post :copy, to: 'posts#copy'
+        end
       end
       get :following_boxes, to: 'boxes#following_boxes'
 

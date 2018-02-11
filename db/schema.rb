@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20180115074442) do
     t.jsonb "images"
     t.boolean "mini_program", default: false
     t.integer "parent_id"
+    t.integer "parent_box_id"
+    t.string "parent_box_name"
     t.datetime "last_shared_at"
     t.datetime "last_copied_at"
     t.datetime "last_pasted_at"
