@@ -32,4 +32,15 @@ RSpec.describe UsersController, type: :controller do
       expect(other.all_box_ids).to include(user.box.id)
     end
   end
+
+  describe "GET #me" do
+    it "returns http success" do
+      @request.headers['Content-Type'] = 'application/json'
+      get :me, params: {token: token}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data']['name']).to eq('223')
+      expect(JSON.parse(response.body)['data']['box']['is_mine']).to eq(true)
+    end
+  end
 end

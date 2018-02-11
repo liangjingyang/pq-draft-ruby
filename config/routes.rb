@@ -6,6 +6,8 @@ Rails.application.routes.draw do
         get :upload_res_token
         get :uri_parser
       end
+      get :me, to: 'users#me'
+
       resources :sessions, only: [:create, :destroy]
       resources :boxes, only: [:update, :index, :show] do
         # post :copy, to: 'posts#copy'
