@@ -15,7 +15,13 @@ class Box < ApplicationRecord
   end
 
   def is_mine(user)
-    user.id == self.user_id
+    user.try(:id) == self.user_id
+  end
+
+  def is_allowed(user)
+    return true if is_mine(user)
+    box_follower = followed.find_by(user_id: user.try(:id))
+    return box_follower.present? && box_follower.allowed
   end
 
   include NumberGenerator

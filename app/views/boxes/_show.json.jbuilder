@@ -7,3 +7,5 @@ json.qrcode_token box.qrcode_token
 json.updated_at box.updated_at
 json.user_name box.user.name
 json.user_image box.user.image
+json.is_mine box.is_mine(current_user)
+json.is_allowed box.is_allowed(current_user)

@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.find_or_create_by!(
-  name: '发言人的草稿箱',
+  name: '首席技术官',
   uid: '053286898350', 
   provider: 'wx',
 )
-user.update_attribute(:image, 'http://p2qeugd65.bkt.clouddn.com/1/fd5aabf071657314fef8f19ea22f960a.png')
+user.update_attribute(:image, 'http://cdn.draftbox.cn/1/4145e075f9f8b596d48aa06769c964b9.png')
 box = user.box
-box.update_attribute(:image, "http://p2qeugd65.bkt.clouddn.com/1/7fb12f890f2f4ac0861975a5e48ab115.png")
+box.update_attribute(:image, "http://cdn.draftbox.cn/1/7fb12f890f2f4ac0861975a5e48ab115.png")
 box.posts.delete_all
 
 # 添加的时候, 按照created_at倒序
@@ -21,9 +21,9 @@ box.posts.create!(
 """给小程序的各个页面增加分享功能
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/4145e075f9f8b596d48aa06769c964b9.png"
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/4145e075f9f8b596d48aa06769c964b9.png"
   ],
   mini_program: true,
   created_at: "2018-01-19",
@@ -34,11 +34,11 @@ box.posts.create!(
 """小程序增加详情页面
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
   ],
   mini_program: true,
   created_at: "2018-01-19",
@@ -49,12 +49,12 @@ box.posts.create!(
 """服务端给post增加copy接口
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/b220150a36331c61638406bcf3053810.jpg"
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/b220150a36331c61638406bcf3053810.jpg"
   ],
   mini_program: true,
   created_at: "2018-01-19",
@@ -65,10 +65,10 @@ box.posts.create!(
 """小程序和服务端联调, 调通各个api接口
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/bc21426085b439f24ba484a56638f6ed.jpg"
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/bc21426085b439f24ba484a56638f6ed.jpg"
   ],
   mini_program: true,
   created_at: "2018-01-18",
@@ -91,8 +91,8 @@ box.posts.create!(
 服务端丰富seed数据, 并部署到服务器上
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
   ],
   mini_program: true,
   created_at: "2018-01-18"
@@ -105,15 +105,15 @@ box.posts.create!(
 2.图片详情(也可能不做)
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/52f962bf1fc70cc9ff2e5fcd55ee2bde.jpg"
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://cdn.draftbox.cn/1/52f962bf1fc70cc9ff2e5fcd55ee2bde.jpg"
   ],
   mini_program: true,
   created_at: "2018-01-17"
@@ -124,7 +124,7 @@ box.posts.create!(
 """服务端的单元测试和seed data
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/72633aa2fca711f716d9427ed048318a.png"
+    "http://cdn.draftbox.cn/1/72633aa2fca711f716d9427ed048318a.png"
   ],
   mini_program: true,
   created_at: "2018-01-16"
@@ -138,14 +138,14 @@ box.posts.create!(
 2.jbuilder
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/c29230951080cae36929ec6a7343b519.png"
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://cdn.draftbox.cn/1/c29230951080cae36929ec6a7343b519.png"
   ],
   mini_program: true,
   created_at: "2018-01-15"
@@ -158,13 +158,13 @@ box.posts.create!(
 2.数据结构
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/a4481ce8b99a20d035ac21b1545768a1.png",
-    "http://p2qeugd65.bkt.clouddn.com/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/1d2c789d51a570de4adbec226bbec63b.jpg",
-    "http://p2qeugd65.bkt.clouddn.com/1/7fb12f890f2f4ac0861975a5e48ab115.png"
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/f3d8a3ba93c031fa6f97d213e6955ce7.png",
+    "http://cdn.draftbox.cn/1/a4481ce8b99a20d035ac21b1545768a1.png",
+    "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
+    "http://cdn.draftbox.cn/1/1d2c789d51a570de4adbec226bbec63b.jpg",
+    "http://cdn.draftbox.cn/1/7fb12f890f2f4ac0861975a5e48ab115.png"
   ],
   mini_program: true,
   created_at: "2018-01-14"
@@ -180,7 +180,7 @@ box.posts.create!(
 5.复制草稿
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/9ef424cf1b898d11da79aaebcdf994cd.jpg"
+    "http://cdn.draftbox.cn/1/9ef424cf1b898d11da79aaebcdf994cd.jpg"
   ],
   mini_program: true,
   created_at: "2018-01-13"
@@ -196,7 +196,7 @@ box.posts.create!(
 5.二维码和小程序码
 """,
   images: [
-    "http://p2qeugd65.bkt.clouddn.com/1/46e74d705da89b0b01701b509b19a8f7.png"
+    "http://cdn.draftbox.cn/1/46e74d705da89b0b01701b509b19a8f7.png"
   ],
   mini_program: true,
   created_at: "2018-01-12"

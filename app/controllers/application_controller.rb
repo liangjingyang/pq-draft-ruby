@@ -5,11 +5,12 @@ class ApplicationController < ActionController::API
 
   # for knock
   include Knock::Authenticable
-  def current_user
-    getter_name = "knock_current_user"
-    define_current_entity_getter('User'.constantize, getter_name)
-    public_send(getter_name)
-  end
+
+  # before_action do
+  #   authenticate_for User
+  # end
+
+  helper_method :current_user
   
   def authenticate_user
     if current_user
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::API
       LOG_DEBUG("authenticate_user failed, user unauthorized")
       raise Draft::Exception::UserUnauthorized.new 
     end
+  end
+
+  def current_ability
+    Ability.new(current_user)
   end
 
   rescue_from CanCan::AccessDenied, with: :render_user_unauthorized
