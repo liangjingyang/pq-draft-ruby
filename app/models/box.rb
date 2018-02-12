@@ -3,6 +3,7 @@ class Box < ApplicationRecord
   has_many :posts, class_name: 'Post', inverse_of: :box
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
   has_many :followed_users, through: :following, class_name: 'User', source: :user
+  default_scope { order(created_at: :desc) }
 
   after_create :generate_qrcode_token
   after_create :development_things

@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :box, class_name: 'Box', inverse_of: :posts
+  default_scope { order(created_at: :desc) }
   
   def images
     s = super
