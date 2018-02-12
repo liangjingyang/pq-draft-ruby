@@ -7,7 +7,7 @@ RSpec.describe MiniProgramController, type: :controller do
   let(:box) { user.box }
   let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
   let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
-  before { Rails.cache.write("#{CACHE_JWT}#{user.id}", token, expires_in: 12.minutes) }
+  before { Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes) }
 
   describe "POST #show" do
     it "Should be able to access self own post" do

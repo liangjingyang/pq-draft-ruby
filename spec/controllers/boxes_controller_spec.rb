@@ -5,7 +5,7 @@ RSpec.describe BoxesController, type: :controller do
   let(:user) { User.create!(name: '223', uid: '123') }
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
   let(:box) { user.box }
-  before { Rails.cache.write("#{CACHE_JWT}#{user.id}", token, expires_in: 12.minutes) }
+  before { Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes) }
 
   describe "GET #index" do
     it "returns http success" do

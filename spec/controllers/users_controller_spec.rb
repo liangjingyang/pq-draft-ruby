@@ -7,7 +7,7 @@ RSpec.describe UsersController, type: :controller do
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
   let(:other_token) { (Knock::AuthToken.new payload: other.to_token_payload).token }
   before do
-    Rails.cache.write("#{CACHE_JWT}#{user.id}", token, expires_in: 12.minutes)
+    Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes)
   end
 
   describe "GET #upload_res_token" do

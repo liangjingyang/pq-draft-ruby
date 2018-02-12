@@ -8,7 +8,8 @@ RSpec.describe BoxFollowersController, type: :controller do
   let(:other_token) { (Knock::AuthToken.new payload: other.to_token_payload).token }
   let!(:box_follower) { other.box_followers.create(box_id: user.box.id) }
   before do
-    Rails.cache.write("#{CACHE_JWT}#{user.id}", token, expires_in: 12.minutes)
+    Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes)
+    Rails.cache.write(CACHE_JWT(other.id), other_token, expires_in: 12.minutes)
   end
 
   describe "GET #index" do

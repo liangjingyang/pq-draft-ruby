@@ -14,12 +14,12 @@ class ApplicationController < ActionController::API
   
   def authenticate_user
     if current_user
-      # if Rails.cache.read("#{CACHE_JWT}#{current_user.id}") != token
-      #   LOG_DEBUG("authenticate_user failed, cache expired!")
-      #   raise Draft::Exception::UserUnauthorized.new 
-      # else
-      #   LOG_DEBUG("authenticate_user success, current_user: #{current_user}")
-      # end
+      if Rails.cache.read(CACHE_JWT(current_user.id)) != token
+        LOG_DEBUG("authenticate_user failed, cache expired!")
+        raise Draft::Exception::UserUnauthorized.new 
+      else
+        LOG_DEBUG("authenticate_user success, current_user: #{current_user}")
+      end
     else
       LOG_DEBUG(params)
       LOG_DEBUG("authenticate_user failed, user unauthorized")
