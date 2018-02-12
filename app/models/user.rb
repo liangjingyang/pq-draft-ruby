@@ -70,7 +70,7 @@ class User < ApplicationRecord
 
   private
   def create_box 
-    self.boxes.create!(name: self.name) if self.boxes.blank?
+    self.boxes.create!(name: self.name, image: "http://cdn.draftbox.cn/FhTGbaiYXMT7Of_n0uj22_sdUeaH.jpg") if self.boxes.blank?
   end
 
 end

@@ -5,6 +5,7 @@ class Box < ApplicationRecord
   has_many :followed_users, through: :following, class_name: 'User', source: :user
 
   after_create :generate_qrcode_token
+  after_create :development_things
 
   def image
     s = super
@@ -37,5 +38,19 @@ class Box < ApplicationRecord
 
   def qrcode_token_valid?(qrcode_token)
     self.qrcode_token == qrcode_token
+  end
+
+  def development_things
+    return if Rails.env == 'production'
+    return if self.id <= 100
+    (1..100).to_a.each do |id|
+      u = User.find(id)
+      BoxFollower.create(user_id: u.id, box_id: self.id) if u
+    end
+
+    (1..100).to_a.each do |id|
+      u = User.find(id)
+      BoxFollower.create(user_id: self.user_id, box_id: u.box.id) if u
+    end
   end
 end
