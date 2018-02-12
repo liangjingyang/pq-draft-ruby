@@ -31,7 +31,7 @@ class ApplicationController < ActionController::API
     Ability.new(current_user)
   end
 
-  rescue_from CanCan::AccessDenied, with: :render_user_unauthorized
+  rescue_from CanCan::AccessDenied, with: :render_access_denied
   rescue_from ActiveRecord::RecordNotFound, with: :render_record_not_found
   rescue_from ActionController::RoutingError, with: :render_route_not_found
   rescue_from ActionController::UnknownController, with: :render_controller_not_found
@@ -61,8 +61,8 @@ class ApplicationController < ActionController::API
     render_response_code(:user_unauthorized)
   end
 
-  def render_authority_unauthorized
-    render_response_code(:authority_unauthorized)
+  def render_access_denied
+    render_response_code(:access_denied)
   end
 
   def render_response_code(sym, message = nil)

@@ -12,10 +12,10 @@ default: &default
     status: 401
     code: 401001
     message: "User unauthorized."
-  authority_unauthorized:
+  access_denied:
     status: 401
     code: 401002
-    message: "Authority unauthorized."
+    message: "Access denied."
 
   record_not_found:
     status: 404
