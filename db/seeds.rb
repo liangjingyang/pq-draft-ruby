@@ -7,9 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
-
-
 user_name_list = ['首席技术官', '首席运管官', '首席信息官', '首席执政官', '首席执行官', 
   '首席zz官', '首席yy官', '首席xx官', '首席外交官', '首席财政官',
   '李文彬', '潘增生', '徐振帅', '吴英道', '郭福兴', '江熠芳', '沈鸿妍', '芦炎琳', '郭景红', '李世元', 
@@ -35,7 +32,7 @@ user_name_list.each do |user_name|
   box.update_attribute(:image, "http://cdn.draftbox.cn/FhTGbaiYXMT7Of_n0uj22_sdUeaH.jpg")
   box.posts.delete_all
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """1. 实现了产品册封面图片的编辑功能; 
   2. 丰富服务端Seed数据, 在Development环境下, 新建用户自动创建多个关注和被关注
@@ -46,7 +43,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-12",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """1 .实现post拷贝功能, 并且在复制的post上显示来源产品册的名字; 
   2. 图片选择库切换为FishBun
@@ -58,7 +55,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-11",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """这两天实现了:
   1. 二维码生成和分享功能, 用户可以扫码关注册子.
@@ -70,7 +67,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-10",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """1. 梳理分享, 拷贝, 小程序图标, 暂时去掉编辑功能
   2. 梳理各个页面的menu
@@ -81,7 +78,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-8",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """这两天实现产品发布功能, 以及一键转发朋友圈的功能
   """,
@@ -91,7 +88,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-7",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """美化界面
   """,
@@ -101,7 +98,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-5",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """产品详情页面
   """,
@@ -111,7 +108,7 @@ user_name_list.each do |user_name|
     created_at: "2018-02-4",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """截止今天, BoxesActivity和BoxActivity基本完成, 通过这两个activity搭建好了底层: 网络层, Event, 图片加载, Activity基类等
   """,
@@ -121,7 +118,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-31",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """这两天一直在调研github上的朋友圈项目, 以及一些可能用到的库
   """,
@@ -131,7 +128,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-26",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """继续udacity的 #Android 应用开发 Android 基础知识# 课程, 最后一节, 十二节
   """,
@@ -141,7 +138,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-24",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """继续udacity的 #Android 应用开发 Android 基础知识# 课程, 跳过第七八九节, 直接看第十, 十一节
   """,
@@ -151,7 +148,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-23",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """继续udacity的 #Android 应用开发 Android 基础知识# 课程, 第五, 六节
   """,
@@ -161,7 +158,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-22",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """继续udacity的 #Android 应用开发 Android 基础知识# 课程, 第三, 四节
   """,
@@ -171,7 +168,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-21",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """开始开发android, 在udacity上找到 #Android 应用开发 Android 基础知识# 课程, 从头看一遍. 
   课程共12节, 今天看前两节
@@ -183,7 +180,7 @@ user_name_list.each do |user_name|
   )
 
   # 添加的时候, 按照created_at倒序
-  box.posts.create!(
+  box.create_post!(
     content:
   """给小程序的各个页面增加分享功能
   """,
@@ -196,7 +193,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-19",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """小程序增加详情页面
   """,
@@ -211,7 +208,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-19",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """服务端给post增加copy接口
   """,
@@ -227,7 +224,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-19",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """小程序和服务端联调, 调通各个api接口
   """,
@@ -241,7 +238,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-18",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """测试一下emoji...
   😬😑😐😶😱😆❤️🚘🚖➢✪☞☛€¥¢®©&⅋🀌🀍🀎‰‱
@@ -252,7 +249,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-18",
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """小程序的开发完成页面的上拉加载和下拉刷新
   服务端丰富seed数据, 并部署到服务器上
@@ -265,7 +262,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-18"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """开始小程序的开发, 小程序打算有2个主要页面:
   1.草稿箱详情页面, 显示用户的草稿箱里点亮小程序图标的草稿
@@ -286,7 +283,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-17"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content:
   """服务端的单元测试和seed data
   """,
@@ -297,7 +294,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-16"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content: 
   """继续服务端开发:
   1.登录登出的controller
@@ -318,7 +315,7 @@ user_name_list.each do |user_name|
   created_at: "2018-01-15"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content: 
   """今天开始实现服务端, 采用rails api only, 想用Elixir Phoenix. 但考虑到时间问题, 先用rails, 以后用Phoenix重写.
   1.项目搭建
@@ -337,7 +334,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-14"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content: 
   """今天的完善了原型图的菜单和细节, 主要包括:
   1.我的草稿箱二维码
@@ -353,7 +350,7 @@ user_name_list.each do |user_name|
     created_at: "2018-01-13"
   )
 
-  box.posts.create!(
+  box.create_post!(
     content: 
   """今天开始着手原型图设计, 参考`知识星球`和`轻芒阅读`, 核心功能只有5个界面:
   1.首页, 列出所有的草稿箱.

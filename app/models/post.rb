@@ -1,7 +1,17 @@
 class Post < ApplicationRecord
+  searchkick
+
   belongs_to :box, class_name: 'Box', inverse_of: :posts
+  belongs_to :user, class_name: 'User', inverse_of: :posts
   default_scope { order(created_at: :desc) }
-  
+
+  # searchkick
+  def search_data
+    {
+      content: content,
+    }
+  end
+
   def images
     s = super
     ss = s.map do |i|
@@ -28,7 +38,7 @@ class Post < ApplicationRecord
     if paste
       paste.update_attribute(:last_pasted_at, now)
     else
-      paste = box.posts.create!(
+      paste = box.create_post!(
         images: self.images, 
         content: self.content, 
         last_pasted_at: now,

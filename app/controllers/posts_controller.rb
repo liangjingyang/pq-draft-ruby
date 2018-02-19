@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def create
     authorize! :update, @box
     authorize! :create, Post
-    @post = @box.posts.create!(create_params)    
+    @post = @box.create_post!(create_params)    
   end
 
   def update

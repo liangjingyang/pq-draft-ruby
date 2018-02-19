@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180115074442) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "box_id"
+    t.integer "user_id"
     t.text "content"
     t.jsonb "images"
     t.boolean "mini_program", default: false

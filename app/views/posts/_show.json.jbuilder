@@ -1,5 +1,7 @@
 json.id post.id
 json.box_id post.box_id
+json.user_name post.user.name
+json.user_image post.user.image
 json.content post.content
 json.images post.images
 json.mini_program post.mini_program

@@ -76,6 +76,9 @@ gem 'qiniu', github: 'qiniu/ruby-sdk'
 # qrcode
 gem 'rqrcode'
 
+# elasticsearch searchkick
+gem 'searchkick'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_bot_rails', '~> 4.0'

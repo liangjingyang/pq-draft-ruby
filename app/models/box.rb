@@ -1,4 +1,6 @@
 class Box < ApplicationRecord
+  searchkick
+
   belongs_to :user, class_name: 'User', inverse_of: :boxes
   has_many :posts, class_name: 'Post', inverse_of: :box
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
@@ -53,5 +55,9 @@ class Box < ApplicationRecord
       u = User.find(id)
       BoxFollower.create(user_id: self.user_id, box_id: u.box.id) if u
     end
+  end
+
+  def create_post!(post_params)
+    self.posts.create!(post_params.merge(user_id: self.user_id))
   end
 end
