@@ -5,7 +5,7 @@ class BoxFollowersController < ApplicationController
     authorize! :index, BoxFollower
     page = params[:page] || 1
     box_id = current_user.box.id
-    @box_followers = BoxFollower.where(box_id: box_id).page(page).per(200)
+    @box_followers = BoxFollower.where(box_id: box_id).page(page).per(30)
   end
 
   def update

@@ -5,7 +5,7 @@ class BoxesController < ApplicationController
     authorize! :index, Box
     page = params[:page] || 1
     # @boxes = Box.all.page(page)
-    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page).per(50)
+    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page).per(30)
   end
 
   def show
@@ -43,7 +43,7 @@ class BoxesController < ApplicationController
     authorize! :index, Box
     page = params[:page] || 1
     # @boxes = Box.all.page(page)
-    @boxes = current_user.following_boxes.page(page).per(50)
+    @boxes = current_user.following_boxes.page(page).per(30)
     render :index
   end
 
