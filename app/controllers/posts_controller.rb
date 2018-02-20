@@ -43,20 +43,6 @@ class PostsController < ApplicationController
     render :show
   end
 
-  def search
-    box_ids = current_user.all_box_ids
-    @posts = Post.where(box_id: box_ids)
-    if params[:q].present?
-      @posts = @posts.where("content LIKE ?", "%#{params[:q]}%")
-    end
-    @posts = @posts.page(params[:page] || 1)
-  end
-
-  # def mini_program
-  #   @posts = Post.where(mini_program: true, box_id: params[:box_id]).order('created_at desc')
-  #   @posts = @posts.page(params[:page] || 1)
-  # end
-
   private
 
   def load_box

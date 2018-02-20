@@ -8,6 +8,7 @@ RSpec.describe UsersController, type: :controller do
   let(:other_token) { (Knock::AuthToken.new payload: other.to_token_payload).token }
   before do
     Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes)
+    Rails.cache.write(CACHE_JWT(other.id), other_token, expires_in: 12.minutes)
   end
 
   describe "GET #upload_res_token" do
@@ -41,6 +42,16 @@ RSpec.describe UsersController, type: :controller do
       LOG_DEBUG(response.body)
       expect(JSON.parse(response.body)['data']['name']).to eq('223')
       expect(JSON.parse(response.body)['data']['box']['is_mine']).to eq(true)
+    end
+  end
+
+  describe "GET #movement" do
+    it "returns http success" do
+      @request.headers['Content-Type'] = 'application/json'
+      get :movement, params: {token: token, user_id: user.id}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data']).to be_empty
     end
   end
 end

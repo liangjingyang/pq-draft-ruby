@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update] do
         get :upload_res_token
         get :uri_parser
+        get :movement
       end
       get :me, to: 'users#me'
 
@@ -25,8 +26,9 @@ Rails.application.routes.draw do
       end
 
       scope path: '/search' do
-        get :box, to: 'boxes#search'
-        get :post, to: 'posts#search'
+        get :box, to: 'search#box'
+        get :post, to: 'search#post'
+        get :all, to: 'search#all'
       end
 
     end

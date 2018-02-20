@@ -22,16 +22,6 @@ class BoxesController < ApplicationController
     @box.update_attributes!(update_params)
   end
 
-  def search
-    box_ids = current_user.all_box_ids
-    @boxes = Box.where(id: box_ids)
-    if params[:q].present?
-      @boxes = @boxes.where("name LIKE ?", "%#{params[:q]}%")
-    end
-    page = params[:page] || 1
-    @boxes = @boxes.page(page)
-  end
-
   def generate_qrcode_token
     @box = Box.find(params[:box_id])
     authorize! :update, @box

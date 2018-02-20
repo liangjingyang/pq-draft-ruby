@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   searchkick
 
-  belongs_to :box, class_name: 'Box', inverse_of: :posts
+  belongs_to :box, touch: true, class_name: 'Box', inverse_of: :posts
   belongs_to :user, class_name: 'User', inverse_of: :posts
   default_scope { order(created_at: :desc) }
 

@@ -9,7 +9,10 @@ RSpec.describe PostsController, type: :controller do
   let(:box) { user.box }
   let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
   let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
-  before { Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes) }
+  before do
+    Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes)
+    Rails.cache.write(CACHE_JWT(user2.id), token2, expires_in: 12.minutes)
+  end
 
   describe "GET #index" do
     it "returns http success" do
