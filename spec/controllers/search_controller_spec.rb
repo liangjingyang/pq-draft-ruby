@@ -43,6 +43,8 @@ RSpec.describe SearchController, type: :controller do
     get :all, params: {q: 'program', token: token, page: 1}, format: :json
     expect(response).to have_http_status(:success)
     LOG_DEBUG(response.body)
+    expect(JSON.parse(response.body)['data']['box_followers']).to be_empty
+    expect(JSON.parse(response.body)['data']['boxes']).to be_empty
     expect(JSON.parse(response.body)['data']['posts'][0]['content']).to eq("mini_program")
   end
 end

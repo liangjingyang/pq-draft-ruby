@@ -5,4 +5,7 @@ json.data do
   json.posts @posts do |post|
     json.partial! 'posts/show', post: post
   end
+  json.box_followers @box_followers do |box_follower|
+    json.partial! 'box_followers/show', box_follower: box_follower
+  end
 end
