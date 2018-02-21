@@ -38,7 +38,7 @@ uid = 1
 
 user_name_list.each do |user_name|
   uid = uid + 1
-  days = random.rand(user_name_list.size) * 10 - 30
+  days = (random.rand(user_name_list.size) - 30) * 10
   user = User.find_or_create_by!(
     name: user_name,
     uid: uid,
@@ -59,7 +59,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 29)
+    created_at: now + 1.day * (days + 29)
   )
 
   content = <<~EOF
@@ -72,7 +72,7 @@ EOF
       "http://cdn.draftbox.cn/1/1896d7ec64ee7dbdd108da24d1223d8e.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 28)
+    created_at: now + 1.day * (days + 28)
   )
 
   content = <<~EOF
@@ -86,7 +86,7 @@ EOF
       "http://cdn.draftbox.cn/1/31bbc1290303b666351aa1272d440cdc.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 27)
+    created_at: now + 1.day * (days + 27)
   )
 
   content = <<~EOF
@@ -100,7 +100,7 @@ EOF
       "http://cdn.draftbox.cn/1/94ac2ea174c428b13351257b3643ef32.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 26)
+    created_at: now + 1.day * (days + 26)
   )
 
   content = <<~EOF
@@ -114,7 +114,7 @@ EOF
       "1/3ddaf1ac583d2a9439efd862536914e4.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 25)
+    created_at: now + 1.day * (days + 25)
   )
 
   content = <<~EOF
@@ -128,7 +128,7 @@ EOF
       "1/89cdbbb43b89d4987f5ef8f5a7a1618e.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 24)
+    created_at: now + 1.day * (days + 24)
   )
 
   content = <<~EOF
@@ -143,7 +143,7 @@ EOF
       "1/7ee69bf3ff82b70eec6439f82346d02c.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 23)
+    created_at: now + 1.day * (days + 23)
   )
 
   content = <<~EOF
@@ -159,7 +159,7 @@ EOF
       "1/db4fe915bab3ab7abc6d7128b564a522.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 22)
+    created_at: now + 1.day * (days + 22)
   )
 
   content = <<~EOF
@@ -172,7 +172,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 21)
+    created_at: now + 1.day * (days + 21)
   )
 
   content = <<~EOF
@@ -184,7 +184,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 20)
+    created_at: now + 1.day * (days + 20)
   )
 
   content = <<~EOF
@@ -196,7 +196,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 19)
+    created_at: now + 1.day * (days + 19)
   )
 
   content = <<~EOF
@@ -208,7 +208,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 18)
+    created_at: now + 1.day * (days + 18)
   )
 
   content = <<~EOF
@@ -220,7 +220,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 17)
+    created_at: now + 1.day * (days + 17)
   )
 
   content = <<~EOF
@@ -232,7 +232,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 16)
+    created_at: now + 1.day * (days + 16)
   )
 
   content = <<~EOF
@@ -244,7 +244,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 15)
+    created_at: now + 1.day * (days + 15)
   )
 
   content = <<~EOF
@@ -256,7 +256,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 14)
+    created_at: now + 1.day * (days + 14)
   )
 
   content = <<~EOF
@@ -268,7 +268,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 14)
+    created_at: now + 1.day * (days + 14)
   )
 
   content = <<~EOF
@@ -280,7 +280,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 13)
+    created_at: now + 1.day * (days + 13)
   )
 
   content = <<~EOF
@@ -293,7 +293,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 12)
+    created_at: now + 1.day * (days + 12)
   )
 
   content = <<~EOF
@@ -308,7 +308,7 @@ EOF
       "http://cdn.draftbox.cn/1/4145e075f9f8b596d48aa06769c964b9.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 11)
+    created_at: now + 1.day * (days + 11)
   )
 
   content = <<~EOF
@@ -325,7 +325,7 @@ EOF
       "http://cdn.draftbox.cn/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 10)
+    created_at: now + 1.day * (days + 10)
   )
 
   content = <<~EOF
@@ -343,7 +343,7 @@ EOF
       "http://cdn.draftbox.cn/1/b220150a36331c61638406bcf3053810.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 9)
+    created_at: now + 1.day * (days + 9)
   )
 
   content = <<~EOF
@@ -358,7 +358,7 @@ EOF
       "http://cdn.draftbox.cn/1/bc21426085b439f24ba484a56638f6ed.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 8)
+    created_at: now + 1.day * (days + 8)
   )
 
   content = <<~EOF
@@ -371,7 +371,7 @@ EOF
     images: [
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 7)
+    created_at: now + 1.day * (days + 7)
   )
 
   content = <<~EOF
@@ -385,7 +385,7 @@ EOF
       "http://cdn.draftbox.cn/1/9e6dac9b62de946e604b51c9ea784c5d.jpg",
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 6)
+    created_at: now + 1.day * (days + 6)
   )
 
   content = <<~EOF
@@ -408,7 +408,7 @@ EOF
       "http://cdn.draftbox.cn/1/52f962bf1fc70cc9ff2e5fcd55ee2bde.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 5)
+    created_at: now + 1.day * (days + 5)
   )
 
   content = <<~EOF
@@ -421,7 +421,7 @@ EOF
       "http://cdn.draftbox.cn/1/72633aa2fca711f716d9427ed048318a.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 4)
+    created_at: now + 1.day * (days + 4)
   )
 
   content = <<~EOF
@@ -444,7 +444,7 @@ EOF
     "http://cdn.draftbox.cn/1/c29230951080cae36929ec6a7343b519.png"
   ],
   mini_program: true,
-  created_at: now - 1.day * (days + 3)
+  created_at: now + 1.day * (days + 3)
   )
 
   content = <<~EOF
@@ -465,7 +465,7 @@ EOF
       "http://cdn.draftbox.cn/1/7fb12f890f2f4ac0861975a5e48ab115.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 2)
+    created_at: now + 1.day * (days + 2)
   )
 
   content = <<~EOF
@@ -483,7 +483,7 @@ EOF
       "http://cdn.draftbox.cn/1/9ef424cf1b898d11da79aaebcdf994cd.jpg"
     ],
     mini_program: true,
-    created_at: now - 1.day * (days + 1)
+    created_at: now + 1.day * (days + 1)
   )
 
   content = <<~EOF
@@ -501,6 +501,6 @@ EOF
       "http://cdn.draftbox.cn/1/46e74d705da89b0b01701b509b19a8f7.png"
     ],
     mini_program: true,
-    created_at: now - 1.day * days
+    created_at: now + 1.day * days
   )
 end
