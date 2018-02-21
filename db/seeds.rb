@@ -38,7 +38,7 @@ uid = 1
 
 user_name_list.each do |user_name|
   uid = uid + 1
-  days = (random.rand(user_name_list.size) - 30) * 10
+  days = random.rand(user_name_list.size) * (-10) - 30
   user = User.find_or_create_by!(
     name: user_name,
     uid: uid,
