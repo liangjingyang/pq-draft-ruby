@@ -1,29 +1,22 @@
 class BoxesController < ApplicationController
   before_action :authenticate_user, except: [:show]
 
-  def index
-    authorize! :index, Box
-    page = params[:page] || 1
-    # @boxes = Box.all.page(page)
-    @boxes = Box.accessible_by(current_ability).where(id: current_user.all_box_ids).page(page).per(30)
-  end
-
   def show
     if params[:number].present?
-      @box = Box.find_by(number: params[:number])
+      @box = box_with_includes.find_by(number: params[:number])
     else
-      @box = Box.find(params[:id])
+      @box = box_with_includes.find(params[:id])
     end
   end
 
   def update
-    @box = Box.find(params[:id])
+    @box = box_with_includes.find(params[:id])
     authorize! :update, @box
     @box.update_attributes!(update_params)
   end
 
   def generate_qrcode_token
-    @box = Box.find(params[:box_id])
+    @box = box_with_includes.find(params[:box_id])
     authorize! :update, @box
     @box.generate_qrcode_token
     render :show
@@ -32,8 +25,11 @@ class BoxesController < ApplicationController
   def following_boxes
     authorize! :index, Box
     page = params[:page] || 1
-    # @boxes = Box.all.page(page)
-    @boxes = current_user.following_boxes.page(page).per(30)
+    @boxes = box_with_includes
+      .where('box_followers.user_id = ?', current_user.id)
+      .order('box_followers.created_at desc')
+      .page(page)
+      .per(30)
     render :index
   end
 
@@ -43,5 +39,9 @@ class BoxesController < ApplicationController
       :name,
       :image,
     )
+  end
+
+  def box_with_includes
+    Box.includes(:followed, :user)
   end
 end

@@ -5,39 +5,39 @@ class PostsController < ApplicationController
   def index
     authorize! :display_posts, @box
     authorize! :index, Post
-    @posts = @box.posts.order('created_at desc')
+    @posts = post_with_includes.order('created_at desc')
     @posts = @posts.page(params[:page] || 1)
   end
 
   def show
     authorize! :display_posts, @box
     authorize! :show, Post
-    @post = @box.posts.find(params[:id])
+    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
   end
   
   def create
     authorize! :update, @box
     authorize! :create, Post
-    @post = @box.create_post!(create_params)    
+    @post = @box.create_post!(create_params.merge(@box.user_id))    
   end
 
   def update
     authorize! :update, @box
-    @post = @box.posts.find(params[:id])
+    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
     authorize! :update, @post
     @post.update_attributes!(update_params)
   end
 
   def destroy
     authorize! :update, @box
-    @post = @box.posts.find(params[:id])
+    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
     authorize! :destroy, @post
     @post.destroy
   end
 
   def copy
     authorize! :display_posts, @box
-    @copy = @box.posts.find(params[:post_id])
+    @copy = post_with_includes.where(box_id: @box.id).find(params[:post_id])
     @post = @copy.copy_to(current_user.box)
     LOG_DEBUG(@post)
     render :show
@@ -63,5 +63,9 @@ class PostsController < ApplicationController
       :mini_program,
       :images => []
     )
+  end
+
+  def post_with_includes
+    Post.includes(:user, :box)
   end
 end

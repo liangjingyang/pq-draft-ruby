@@ -22,12 +22,29 @@ class UriParser
       query_params = parse_params
       qrcode_token = query_params['qrcode_token']
       box = Box.find_by(qrcode_token: qrcode_token)
-      BoxFollower.find_or_create_by(user_id: @user.id, box_id: box.id) if box.user_id != @user.id
-      @code = 0
-      @message = '订阅成功'
+      if box.user_id != @user.id
+        box_follower = BoxFollower.find_by(user_id: @user.id, box_id: box.id)
+        if box_follower.present?
+          if !box_follower.allowed
+            @code = 104
+            @message = '已关注, 但没有权限查看该产品册, 请联系册主'
+          else
+            @code = 105
+            @message = '已关注'
+          end
+        else
+          BoxFollower.create!(user_id: @user.id, box_id: box.id)
+          @code = 0
+          @message = '关注成功'
+        end
+      else
+        @code = 103
+        @message = '不能关注自己的产品册'
+      end
+      
     rescue
       @code = 102
-      @message = '订阅失败'
+      @message = '关注失败'
     end
   end
 

@@ -5,8 +5,8 @@ RSpec.describe MiniProgramController, type: :controller do
   let(:user) { User.create!(name: '223', uid: '123') }
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
   let(:box) { user.box }
-  let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
-  let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
+  let!(:the_post) { box.create_post!(content: "test", images: ["aaa", "bbb"]) }
+  let!(:mini_post) { box.create_post!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
   before { Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes) }
 
   describe "POST #show" do

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :me, to: 'users#me'
 
       resources :sessions, only: [:create, :destroy]
-      resources :boxes, only: [:update, :index, :show] do
+      resources :boxes, only: [:update, :show] do
         post :generate_qrcode_token
         resources :posts, only: [:create, :update, :index, :show, :destroy] do
           post :copy, to: 'posts#copy'

@@ -7,8 +7,8 @@ RSpec.describe PostsController, type: :controller do
   let(:token) { (Knock::AuthToken.new payload: user.to_token_payload).token }
   let(:token2) { (Knock::AuthToken.new payload: user2.to_token_payload).token }
   let(:box) { user.box }
-  let!(:the_post) { box.posts.create!(content: "test", images: ["aaa", "bbb"]) }
-  let!(:mini_post) { box.posts.create!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
+  let!(:the_post) { box.create_post!(content: "test", images: ["aaa", "bbb"]) }
+  let!(:mini_post) { box.create_post!(content: "mini_program", mini_program: true, images: ["aaa", "bbb"]) }
   before do
     Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes)
     Rails.cache.write(CACHE_JWT(user2.id), token2, expires_in: 12.minutes)
@@ -32,10 +32,9 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST #show" do
     before do
-      @user2 = create(:user, uid: '111', provider: 'wx', name: 'abc')
+      @user2 = User.create!(uid: '111', name: 'abc')
       @box2 = @user2.box
-      @the_post2 = @box2.posts.create!(content: "test2", images: ["aaa", "bbb"])
-      
+      @the_post2 = @box2.create_post!(content: "test2", images: ["aaa", "bbb"])
     end
     it "Should be able to access self own post" do
       get :show, params: {box_id: box.id, token: token, id: the_post.id}, format: :json

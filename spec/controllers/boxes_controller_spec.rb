@@ -11,7 +11,7 @@ RSpec.describe BoxesController, type: :controller do
     it "returns http success" do
       get :index, params: {token: token, page: 1}, format: :json
       expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body)['data'][0]['name']).to eq('223')
+      expect(JSON.parse(response.body)['data']).to be_empty
     end
 
     it "returns user unauthorized" do

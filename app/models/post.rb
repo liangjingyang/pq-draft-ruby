@@ -3,7 +3,6 @@ class Post < ApplicationRecord
 
   belongs_to :box, touch: true, class_name: 'Box', inverse_of: :posts
   belongs_to :user, class_name: 'User', inverse_of: :posts
-  default_scope { order(created_at: :desc) }
 
   # searchkick
   def search_data
@@ -44,7 +43,8 @@ class Post < ApplicationRecord
         last_pasted_at: now,
         parent_id: self.id,
         parent_box_id: self.box.id,
-        parent_box_name: self.box.name
+        parent_box_name: self.box.name,
+        user_id: box.user_id
       )
       self.update_attributes(
         last_copied_at: now,
