@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show, :update] do
         get :upload_res_token
         get :uri_parser
-        get :movement
       end
       get :me, to: 'users#me'
 
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
         end
       end
       get :following_boxes, to: 'boxes#following_boxes'
+      get :movement, to: 'posts#movement'
 
       resources :box_followers, only: [:create, :update, :destroy, :index]
       
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
         get :post, to: 'search#post'
         get :all, to: 'search#all'
       end
+
 
     end
   end

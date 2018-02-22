@@ -44,14 +44,4 @@ RSpec.describe UsersController, type: :controller do
       expect(JSON.parse(response.body)['data']['box']['is_mine']).to eq(true)
     end
   end
-
-  describe "GET #movement" do
-    it "returns http success" do
-      @request.headers['Content-Type'] = 'application/json'
-      get :movement, params: {token: token, user_id: user.id}, format: :json
-      expect(response).to have_http_status(:success)
-      LOG_DEBUG(response.body)
-      expect(JSON.parse(response.body)['data']).to be_empty
-    end
-  end
 end

@@ -102,4 +102,13 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "GET #movement" do
+    it "returns http success" do
+      @request.headers['Content-Type'] = 'application/json'
+      get :movement, params: {token: token, user_id: user.id}, format: :json
+      expect(response).to have_http_status(:success)
+      LOG_DEBUG(response.body)
+      expect(JSON.parse(response.body)['data'][0]['content']).to eq('mini_program')
+    end
+  end
 end

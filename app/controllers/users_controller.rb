@@ -17,10 +17,4 @@ class UsersController < ApplicationController
     render :show
   end
 
-  def movement
-    box_ids = current_user.all_box_ids
-    @posts = Post.where(box_id: box_ids)
-    @posts = @posts.page(params[:page] || 1)
-  end
-  
 end
