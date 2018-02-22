@@ -5,14 +5,14 @@ class PostsController < ApplicationController
   def index
     authorize! :display_posts, @box
     authorize! :index, Post
-    @posts = post_with_includes.order('created_at desc')
+    @posts = Post.with_includes.order('created_at desc')
     @posts = @posts.page(params[:page] || 1)
   end
 
   def show
     authorize! :display_posts, @box
     authorize! :show, Post
-    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
+    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
   end
   
   def create
@@ -23,21 +23,21 @@ class PostsController < ApplicationController
 
   def update
     authorize! :update, @box
-    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
+    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
     authorize! :update, @post
     @post.update_attributes!(update_params)
   end
 
   def destroy
     authorize! :update, @box
-    @post = post_with_includes.where(box_id: @box.id).find(params[:id])
+    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
     authorize! :destroy, @post
     @post.destroy
   end
 
   def copy
     authorize! :display_posts, @box
-    @copy = post_with_includes.where(box_id: @box.id).find(params[:post_id])
+    @copy = Post.with_includes.where(box_id: @box.id).find(params[:post_id])
     @post = @copy.copy_to(current_user.box)
     LOG_DEBUG(@post)
     render :show
@@ -65,7 +65,4 @@ class PostsController < ApplicationController
     )
   end
 
-  def post_with_includes
-    Post.includes(:user, :box)
-  end
 end

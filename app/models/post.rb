@@ -3,6 +3,7 @@ class Post < ApplicationRecord
 
   belongs_to :box, touch: true, class_name: 'Box', inverse_of: :posts
   belongs_to :user, class_name: 'User', inverse_of: :posts
+  scope :with_includes,  -> { includes(:user, :box) }
 
   # searchkick
   def search_data

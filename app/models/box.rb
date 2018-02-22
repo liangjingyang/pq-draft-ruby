@@ -6,6 +6,8 @@ class Box < ApplicationRecord
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
   has_many :followed_users, through: :following, class_name: 'User', source: :user
 
+  scope :with_includes,  -> { includes(:followed, :user) }
+
   after_create :generate_qrcode_token
   after_create :development_things
 

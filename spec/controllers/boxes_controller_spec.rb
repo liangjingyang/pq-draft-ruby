@@ -7,20 +7,6 @@ RSpec.describe BoxesController, type: :controller do
   let(:box) { user.box }
   before { Rails.cache.write(CACHE_JWT(user.id), token, expires_in: 12.minutes) }
 
-  describe "GET #index" do
-    it "returns http success" do
-      get :index, params: {token: token, page: 1}, format: :json
-      expect(response).to have_http_status(:success)
-      expect(JSON.parse(response.body)['data']).to be_empty
-    end
-
-    it "returns user unauthorized" do
-      get :index, format: :json
-      expect(response).to have_http_status(401)
-      expect(JSON.parse(response.body)['code']).to eq(401001)
-    end 
-  end
-
   describe "POST #show" do
     it "returns http success" do
       get :show, params: {token: token, id: box.id}, format: :json
