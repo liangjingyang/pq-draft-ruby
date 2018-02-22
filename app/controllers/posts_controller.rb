@@ -5,14 +5,14 @@ class PostsController < ApplicationController
   def index
     authorize! :display_posts, @box
     authorize! :index, Post
-    @posts = Post.with_includes.order('posts.created_at desc')
+    @posts = @box.posts.with_includes.order('posts.created_at desc')
     @posts = @posts.page(params[:page] || 1)
   end
 
   def show
     authorize! :display_posts, @box
     authorize! :show, Post
-    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
+    @post = @box.posts.with_includes.find(params[:id])
   end
   
   def create
@@ -23,21 +23,21 @@ class PostsController < ApplicationController
 
   def update
     authorize! :update, @box
-    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
+    @post = @box.posts.with_includes.find(params[:id])
     authorize! :update, @post
     @post.update_attributes!(update_params)
   end
 
   def destroy
     authorize! :update, @box
-    @post = Post.with_includes.where(box_id: @box.id).find(params[:id])
+    @post = @box.posts.with_includes.find(params[:id])
     authorize! :destroy, @post
     @post.destroy
   end
 
   def copy
     authorize! :display_posts, @box
-    @copy = Post.with_includes.where(box_id: @box.id).find(params[:post_id])
+    @copy = @box.posts.with_includes.find(params[:post_id])
     @post = @copy.copy_to(current_user.box)
     LOG_DEBUG(@post)
     render :show
