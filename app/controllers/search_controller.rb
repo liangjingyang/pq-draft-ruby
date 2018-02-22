@@ -34,7 +34,7 @@ class SearchController < ApplicationController
   end
 
   def all
-    params.merge(per_page: 3)
+    params.merge!(per_page: 3)
     box
     post
     box_follower

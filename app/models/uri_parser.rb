@@ -3,13 +3,16 @@ class UriParser
   def initialize(user, uri)
     @user = user
     uri = uri || ''
-    @uri = URI.parse(uri)
+    @uri = URI.parse(URI.unescape(uri))
     @code = 0
   end
 
   def parse
     if follow_box_uri?
       parse_follow_box_uri
+    else
+      @code = 101
+      @message = '解析失败'
     end
   end
 
@@ -19,16 +22,11 @@ class UriParser
       query_params = parse_params
       qrcode_token = query_params['qrcode_token']
       box = Box.find_by(qrcode_token: qrcode_token)
-      if box.present?
-        BoxFollower.find_or_create_by(user_id: @user.id, box_id: box.id)
-        @code = 0
-        @message = '订阅成功'
-      else
-        @code = 1
-        @message = '订阅失败'
-      end
+      BoxFollower.find_or_create_by(user_id: @user.id, box_id: box.id) if box.user_id != @user.id
+      @code = 0
+      @message = '订阅成功'
     rescue
-      @code = 1
+      @code = 102
       @message = '订阅失败'
     end
   end
