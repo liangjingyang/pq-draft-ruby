@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :action_logs, class_name: 'ActionLog'
   has_many :boxes, class_name: 'Box', inverse_of: :user, dependent: :destroy
   has_many :posts, class_name: 'Post', inverse_of: :user
-  has_many :box_followers, class_name: 'BoxFollower', dependent: :destroy
+  has_many :box_followers, -> { where(allowed: true) }, class_name: 'BoxFollower', dependent: :destroy
   has_many :following_boxes, through: :box_followers, class_name: 'Box', source: :box
   
   after_create :create_box

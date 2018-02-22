@@ -6,7 +6,7 @@ class Box < ApplicationRecord
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
   has_many :followed_users, through: :following, class_name: 'User', source: :user
 
-  scope :with_includes,  -> { includes(:followed, :user) }
+  scope :with_includes, -> { includes(:user) }
 
   after_create :generate_qrcode_token
   after_create :development_things
@@ -23,11 +23,11 @@ class Box < ApplicationRecord
     user.try(:id) == self.user_id
   end
 
-  def is_allowed(user)
-    return true if is_mine(user)
-    box_follower = followed.find_by(user_id: user.try(:id))
-    return box_follower.present? && box_follower.allowed
-  end
+  # def is_allowed(user)
+  #   return true if is_mine(user)
+  #   box_follower = followed.find_by(user_id: user.try(:id))
+  #   return box_follower.present? && box_follower.allowed
+  # end
 
   include NumberGenerator
   def generate_number(options = {})

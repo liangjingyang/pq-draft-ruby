@@ -8,4 +8,3 @@ json.updated_at box.updated_at
 json.user_name box.user.name
 json.user_image box.user.image
 json.is_mine box.is_mine(user)
-json.is_allowed box.is_allowed(user)

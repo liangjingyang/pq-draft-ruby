@@ -3,7 +3,7 @@ class Post < ApplicationRecord
 
   belongs_to :box, touch: true, class_name: 'Box', inverse_of: :posts
   belongs_to :user, class_name: 'User', inverse_of: :posts
-  scope :with_includes,  -> { includes(:user, :box) }
+  scope :with_includes, -> { includes(:user, :box) }
 
   # searchkick
   def search_data
@@ -25,7 +25,7 @@ class Post < ApplicationRecord
   end
 
   def is_mine(user)
-    self.box_id == user.box.id
+    self.user_id == user.id
   end
     
   # self post is copied post, aim post is pasted post
