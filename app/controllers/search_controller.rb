@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     end
     page = params[:page] || 1
     per_page = params[:per_page] || 30
-    @posts = @posts.page(params[:page])
+    @posts = @posts.page(page).per(per_page)
   end
  
   def box
