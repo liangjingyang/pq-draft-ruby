@@ -1,5 +1,4 @@
 class Box < ApplicationRecord
-  searchkick
 
   belongs_to :user, class_name: 'User', inverse_of: :boxes
   has_many :posts, class_name: 'Post', inverse_of: :box

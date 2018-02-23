@@ -19,13 +19,13 @@ RSpec.describe SearchController, type: :controller do
 
   describe "GET #box" do
     it "Should be able to search box by name" do
-      get :box, params: {q: '22', token: token}, format: :json
+      get :boxes, params: {q: '22', token: token}, format: :json
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body)['data'][0]['name']).to eq('224')
     end
 
     it "returns user unauthorized" do
-      get :box, params: {q: '22'}, format: :json
+      get :boxes, params: {q: '22'}, format: :json
       expect(response).to have_http_status(401)
       expect(JSON.parse(response.body)['code']).to eq(401001)
     end 
@@ -33,14 +33,14 @@ RSpec.describe SearchController, type: :controller do
 
   describe "GET #post" do
     it "returns http success" do
-      get :post, params: {q: 'mini', token: token, page: 1}, format: :json
+      get :posts, params: {q: 'mini', token: token, page: 1}, format: :json
       expect(response).to have_http_status(:success)
       LOG_DEBUG(response.body)
       expect(JSON.parse(response.body)['data'][0]['content']).to eq("mini_program")
     end
 
     it "returns user unauthorized" do
-      get :post, format: :json
+      get :posts, format: :json
       expect(response).to have_http_status(401)
       expect(JSON.parse(response.body)['code']).to eq(401001)
     end 

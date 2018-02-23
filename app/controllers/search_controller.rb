@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   before_action :authenticate_user
 
-  def post
+  def posts
     page = params[:page] || 1
     per_page = params[:per_page] || 30
     box_ids = current_user.all_box_ids
@@ -12,7 +12,7 @@ class SearchController < ApplicationController
       .page(page).per(per_page)
   end
  
-  def box
+  def boxes
     page = params[:page] || 1
     per_page = params[:per_page] || 30
     @boxes = current_user.following_boxes
@@ -22,7 +22,7 @@ class SearchController < ApplicationController
       .page(page).per(per_page)
   end
 
-  def box_follower
+  def box_followers
     page = params[:page] || 1
     per_page = params[:per_page] || 30
     box_id = current_user.box.id
@@ -34,9 +34,9 @@ class SearchController < ApplicationController
 
   def all
     params.merge!(per_page: 3)
-    box
-    post
-    box_follower
+    boxes
+    posts
+    box_followers
   end
 
 end

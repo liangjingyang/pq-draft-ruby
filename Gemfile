@@ -77,7 +77,7 @@ gem 'qiniu', github: 'qiniu/ruby-sdk'
 gem 'rqrcode'
 
 # elasticsearch searchkick
-gem 'searchkick'
+# gem 'searchkick'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
