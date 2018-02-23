@@ -51,8 +51,20 @@ user_name_list.each do |user_name|
   box.posts.delete_all
 
   content = <<-EOF
+2018-02-22 开发日志:
+优化服务端sql, 完成关于我们页面, 申请微信支付, 小程序提交新版本统一域名, 以及各种细节优化
+EOF
+    box.create_post!(
+      content: content,
+      images: [
+        "1/b6db8ee93b885d21b94b827adf68c367.jpeg"
+      ],
+      mini_program: true,
+      created_at: now + 1.day * (days + 29)
+    )
+  content = <<-EOF
 2018-02-21 开发日志:
-前端增加搜索全部的界面, 调通searchAll接口
+前端增加搜索全部的界面, 调通searchAll接口, 高亮搜索关键词
 EOF
   box.create_post!(
     content: content,

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       end
 
       scope path: '/search' do
+        get :box_follower, to: 'search#box_follower'
         get :box, to: 'search#box'
         get :post, to: 'search#post'
         get :all, to: 'search#all'

@@ -26,7 +26,7 @@ class BoxesController < ApplicationController
     authorize! :index, Box
     page = params[:page] || 1
     @boxes = current_user.following_boxes
-      .with_includes.joins(:followed)
+      .with_includes
       .order('box_followers.created_at desc')
       .page(page)
       .per(30)

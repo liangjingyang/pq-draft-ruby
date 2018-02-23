@@ -16,12 +16,12 @@ class SearchController < ApplicationController
     page = params[:page] || 1
     per_page = params[:per_page] || 30
     @boxes = current_user.following_boxes
-      .with_includes.joins(:followed)
+      .with_includes
       .where("boxes.name LIKE ?", "%#{params[:q]}%")
       .order('box_followers.created_at desc')
       .page(page).per(per_page)
   end
-  
+
   def box_follower
     page = params[:page] || 1
     per_page = params[:per_page] || 30
