@@ -30,6 +30,7 @@ class SearchController < ApplicationController
       .with_includes.joins(:user)
       .where('users.name LIKE ?', "%#{params[:q]}%")
       .order('box_followers.created_at desc')
+      .page(page).per(per_page)
   end
 
   def all
