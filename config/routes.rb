@@ -32,6 +32,8 @@ Rails.application.routes.draw do
         get :all, to: 'search#all'
       end
 
+      get :wx_unified_order, to: 'wx#unified_order'
+      get :wx_notify_unified_order, to: 'wx#notify_unified_order'
 
     end
   end
