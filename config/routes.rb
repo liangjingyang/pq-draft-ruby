@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get :wx_unified_order, to: 'wx#unified_order'
       get :wx_notify_unified_order, to: 'wx#notify_unified_order'
 
+      get :server_config, to: 'users#server_config'
+
     end
   end
   

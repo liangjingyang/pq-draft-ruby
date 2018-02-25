@@ -66,7 +66,23 @@ class User < ApplicationRecord
   end
 
   def all_box_ids
-    self.following_boxes.all.pluck(:id) + boxes.all.pluck(:id)
+    Box.distinct
+      .joins(:followed)
+      .where('box_followers.user_id = ? OR boxes.user_id = ?', self.id, self.id)
+      .pluck(:id)
+  end
+
+  def movement_updated_at
+    Box.distinct
+      .joins(:followed)
+      .where('box_followers.user_id = ? OR boxes.user_id = ?', self.id, self.id)
+      .order('boxes.updated_at desc')
+      .first
+      .updated_at
+  end
+
+  def movement_image
+    "http://cdn.draftbox.cn/1/e8e1074931cfe8d00963ff1ce1851b6a.jpg"
   end
 
   private

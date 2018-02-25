@@ -17,4 +17,8 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def server_config
+    @server_config = ServerConfig.new()
+  end
+
 end
