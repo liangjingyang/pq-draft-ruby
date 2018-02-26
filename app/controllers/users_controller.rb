@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:server_config]
 
   def upload_res_token
     @box = Box.find(params[:box_id])
