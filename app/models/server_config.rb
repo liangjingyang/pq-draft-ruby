@@ -1,12 +1,14 @@
 class ServerConfig
-  attr_reader :add_counter_interval
-  attr_reader :add_counter_max_count
-  attr_reader :ads_counter_pay_interval
+  attr_reader :ads_counter_interval_for_thanks
+  attr_reader :ads_counter_max_count_for_thanks
+  attr_reader :ads_counter_pay_interval_for_thanks
   attr_reader :notice
+  attr_reader :ads_counter_max_count_for_post
 
   def initialize
-    @add_counter_interval = 86400
-    @add_counter_max_count = 30
-    @ads_counter_pay_interval = 259200
+    @ads_counter_interval_for_thanks = 86400
+    @ads_counter_max_count_for_thanks = 30
+    @ads_counter_pay_interval_for_thanks = 259200
+    @ads_counter_max_count_for_post = 30
   end
 end
