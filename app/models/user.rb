@@ -77,7 +77,7 @@ class User < ApplicationRecord
       .left_joins(:followed)
       .where('box_followers.user_id = ? OR boxes.user_id = ?', self.id, self.id)
       .order('boxes.updated_at desc')
-      .first.try
+      .first
       .updated_at
   end
 
