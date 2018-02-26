@@ -20,9 +20,8 @@ module Draft
       request_get(url)
     end
 
-    def unified_order(fee_in_cent, ip)
+    def unified_order(fee_in_cent, ip, nonce_str)
       url = "#{DRAFT_CONFIG['wx_pay_api_endpoint']}/pay/unifiedorder"
-      nonce_str = random_string
       body = {
         'appid' => DRAFT_CONFIG['wx_app_id'],
         'mch_id' => DRAFT_CONFIG['wx_mch_id'],
@@ -37,10 +36,6 @@ module Draft
       body['sign'] = sign(body)
       puts body
       request_post_xml(url, body)
-    end
-
-    def random_string
-      [('0'..'9'), ('A'..'Z')].map(&:to_a).flatten.shuffle[0, 16].join
     end
 
     def sign(h)

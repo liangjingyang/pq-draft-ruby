@@ -6,7 +6,7 @@ class ServerConfig
 
   def initialize
     @add_counter_interval = 86400
-    @add_counter_max_count = 50
+    @add_counter_max_count = 30
     @ads_counter_pay_interval = 259200
   end
 end
