@@ -67,17 +67,17 @@ class User < ApplicationRecord
 
   def all_box_ids
     Box.distinct
-      .joins(:followed)
+      .left_joins(:followed)
       .where('box_followers.user_id = ? OR boxes.user_id = ?', self.id, self.id)
       .pluck(:id)
   end
 
   def movement_updated_at
     Box.distinct
-      .joins(:followed)
+      .left_joins(:followed)
       .where('box_followers.user_id = ? OR boxes.user_id = ?', self.id, self.id)
       .order('boxes.updated_at desc')
-      .first
+      .first.try
       .updated_at
   end
 
