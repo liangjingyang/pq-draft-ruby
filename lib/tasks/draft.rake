@@ -5,8 +5,10 @@ namespace :draft do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    puts "seed ..."
-    Rake::Task['db:seed'].invoke
+    if Rails.env == 'development'
+      puts "seed ..."
+      Rake::Task['db:seed'].invoke
+    end
     puts "done!"
   end
 end
