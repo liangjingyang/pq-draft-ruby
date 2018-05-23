@@ -1,11 +1,12 @@
 class Post < ApplicationRecord
-
+  acts_as_paranoid
+  
   belongs_to :box, touch: true, class_name: 'Box', inverse_of: :posts
   belongs_to :user, class_name: 'User', inverse_of: :posts
   scope :with_includes, -> { includes(:user, :box) }
 
   def images
-    s = super
+    s = super || []
     ss = s.map do |i|
       if !(i =~ /^https?:\/\//)
         "#{DRAFT_CONFIG['qiniu_cname']}/#{i.gsub(/^https?:\/\/.*?\//, '')}"

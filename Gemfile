@@ -79,6 +79,9 @@ gem 'rqrcode'
 # elasticsearch searchkick
 # gem 'searchkick'
 
+# deleted_at
+gem 'paranoia'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_bot_rails', '~> 4.0'
