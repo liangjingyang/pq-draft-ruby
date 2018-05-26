@@ -19,30 +19,47 @@ class User < ApplicationRecord
   end
 
   def self.from_token_request(permited_params)
-    return if permited_params[:token].blank?
-    access_token_res = get_access_token(permited_params[:token])
-    user_info_res = get_user_info(access_token_res['access_token'], access_token_res['openid'])
-    uid = user_info_res['unionid']
-    name = user_info_res['nickname']
-    user = User.find_by(
-      uid: uid, 
-      provider: permited_params[:provider]
-    )
-    unless user.present?
-      user = User.create!(uid: uid, provider: permited_params[:provider], name: name)
+    if permited_params[:token].present? # 绑定微信 | 微信登录
+      access_token_res = get_access_token(permited_params[:token])
+      user_info_res = get_user_info(access_token_res['access_token'], access_token_res['openid'])
+      uid = user_info_res['unionid']
+      name = user_info_res['nickname']
+      user = User.find_by(
+        uid: uid, 
+        provider: permited_params[:provider]
+      )
+      unless user.present?
+        if permited_params[:uuid].present? # 绑定微信
+          user = User.find_or_create_by(
+            uuid: permited_params[:uuid], 
+          )
+        else
+          user = User.create!(uid: uid, provider: permited_params[:provider], name: name)
+        end
+      end
+      user.uid = uid
+      user.provider = permited_params[:provider]
+      user.image = user_info_res['headimgurl']
+      user.name = user_info_res['nickname']
+      user.language = user_info_res['language']
+      user.country = user_info_res['country']
+      user.province = user_info_res['province']
+      user.city = user_info_res['city']
+      user.sex = user_info_res['sex']
+      user.provider_token = access_token_res['access_token']
+      user.provider_refresh_token = access_token_res['refresh_token']
+      user.save!
+      user.box.update_column(:name, name)
+      return user
+    elsif permited_params[:uuid].present?
+      user = User.find_or_create_by(
+        uuid: permited_params[:uuid], 
+      )
+      user.image = 'FhTGbaiYXMT7Of_n0uj22_sdUeaH.jpg'
+      user.name = "产品册#{user.id}"
+      user.save!
+      return user
     end
-    user.uid = uid
-    user.image = user_info_res['headimgurl']
-    user.name = user_info_res['nickname']
-    user.language = user_info_res['language']
-    user.country = user_info_res['country']
-    user.province = user_info_res['province']
-    user.city = user_info_res['city']
-    user.sex = user_info_res['sex']
-    user.provider_token = access_token_res['access_token']
-    user.provider_refresh_token = access_token_res['refresh_token']
-    user.save!
-    return user
   end
 
 
@@ -86,8 +103,9 @@ class User < ApplicationRecord
   end
 
   private
-  def create_box 
-    self.boxes.create!(name: self.name, image: "http://cdn.draftbox.cn/FhTGbaiYXMT7Of_n0uj22_sdUeaH.jpg") if self.boxes.blank?
+  def create_box
+    box_name = self.name || "产品册#{self.id}"
+    self.boxes.create!(name: box_name, image: "http://cdn.draftbox.cn/FhTGbaiYXMT7Of_n0uj22_sdUeaH.jpg") if self.boxes.blank?
   end
 
 end

@@ -1,4 +1,6 @@
 json.id user.id
+json.uid user.uid
+json.provider user.provider
 json.name user.name
 json.image user.image
 json.box do

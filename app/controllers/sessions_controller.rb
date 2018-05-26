@@ -40,6 +40,6 @@ class SessionsController < ApplicationController
   end
 
   def auth_params
-    params.require(:session).permit :uid, :token, :provider
+    params.require(:session).permit :uid, :token, :provider, :uuid
   end
 end
