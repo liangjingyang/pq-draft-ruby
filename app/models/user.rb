@@ -37,6 +37,7 @@ class User < ApplicationRecord
           user = User.create!(uid: uid, provider: permited_params[:provider], name: name)
         end
       end
+      user.uuid = nil # 微信绑定后, 关闭游客模式
       user.uid = uid
       user.provider = permited_params[:provider]
       user.image = user_info_res['headimgurl']
