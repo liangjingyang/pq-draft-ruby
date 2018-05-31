@@ -28,6 +28,7 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_admin
+    uid = current_user.try(:uid) || params[:admin_token]
     unless current_user.try(:uid) == 'oCvQn1MvhYMsWsKz5QlrVVK-dSGg'
       return raise Draft::Exception::UserUnauthorized.new
     end
