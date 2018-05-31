@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   scope path: '/api', defaults: {format: :json} do
     scope path: '/v1' do
+      namespace :admin do
+        resources :posts, only: [:index]
+        resources :boxes, only: [:index]
+      end
+
       resources :users, only: [:index, :show, :update] do
         get :upload_res_token
         get :uri_parser

@@ -3,7 +3,7 @@ class Box < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :boxes
   has_many :posts, class_name: 'Post', inverse_of: :box
   has_many :followed, class_name: 'BoxFollower', dependent: :destroy
-  has_many :followed_users, through: :following, class_name: 'User', source: :user
+  has_many :followed_users, through: :followed, class_name: 'User', source: :user
 
   scope :with_includes, -> { includes(:user) }
 
