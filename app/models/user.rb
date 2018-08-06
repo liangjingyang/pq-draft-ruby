@@ -39,6 +39,7 @@ class User < ApplicationRecord
       end
       user.uuid = nil # 微信绑定后, 关闭游客模式
       user.uid = uid
+      user.openid = access_token_res['openid']
       user.provider = permited_params[:provider]
       user.image = user_info_res['headimgurl']
       user.name = user_info_res['nickname']
