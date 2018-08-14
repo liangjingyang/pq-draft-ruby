@@ -51,6 +51,9 @@ Rails.application.routes.draw do
   Sidekiq::Web.use(Rack::Auth::Basic) { |user, pass| user == 'tech' && pass == 'Woshimima123' }
   Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
+  # For grape api
+  mount API::V1::Base => '/grape'
+
   match '*path', to: 'errors#route_not_found', via: :all
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

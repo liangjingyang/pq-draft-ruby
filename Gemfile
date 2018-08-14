@@ -93,3 +93,12 @@ end
 group :test do
   gem 'database_cleaner', '~> 1.6'
 end
+
+# grape api
+gem 'grape'
+
+# grape activerecord serializer
+gem 'grape-active_model_serializers'
+
+# grape grape-swagger
+gem 'grape-swagger'
